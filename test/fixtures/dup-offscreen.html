@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Duplicate off-screen</title><script src="/oracle.js"></script></head>
+<body>
+<!-- Review PERF-1 / AS5: "Dup" exists twice (one in view, one 3000px below the fold), "Solo" once.
+     Per PLAN Refs, a re-rendered element is re-resolved only when its role+name is unique in the
+     document, so after re-rendering, the Solo ref still clicks and the Dup ref is stale. -->
+<h1>Duplicate off-screen</h1>
+<button id="dup1" type="button" onclick="__count('dup1')">Dup</button>
+<button id="solo" type="button" onclick="__count('solo')">Solo</button>
+<div style="margin-top:3000px"><button id="dup2" type="button" onclick="__count('dup2')">Dup</button></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "kind": "agent",
+  "date": "2026-10-26T12:54:48.485Z",
+  "model": "claude-opus-5-5",
+  "timeout_min": 6,
+  "plan": {
+    "date": "2026-10-26",
+    "tag": "probe-t5",
+    "model": "claude-opus-5-5",
+    "tasks": [
+      "T5"
+    ],
+    "reps": 1,
+    "only": "x2-browser",
+    "rotate": false,
+    "warmup": false,
+    "timeout_min": 6,
+    "budget_usd": 1
+  },
+  "start": {
+    "at": "2026-10-26T12:54:48.485Z",
+    "uptime": "14:54  up 2 days, 15:47, 1 user, load averages: 2.03 4.10 5.04",
+    "swap": "total = 5120.00M  used = 4134.31M  free = 985.69M  (encrypted)"
+  },
+  "skipped": [],
+  "runs": [
+    {
+      "contender": "x2-browser",
+      "task": "T5",
+      "rep": 1,
+      "invalid": true,
+      "invalid_reason": "HTTP 419",
+      "success": false,
+      "total_cost_usd": 0,
+      "tool_calls": 0,
+      "tool_result_chars": 0,
+      "wall_ms": 0,
+      "detail": "INVALID: HTTP 419",
+      "file": null
+    }
+  ],
+  "end": {
+    "at": "2026-10-26T12:54:49.102Z",
+    "uptime": "14:54  up 2 days, 15:47, 1 user, load averages: 2.03 4.10 5.04",
+    "swap": "total = 5120.00M  used = 4134.31M  free = 985.69M  (encrypted)"
+  },
+  "total_cost_usd": 0
+}

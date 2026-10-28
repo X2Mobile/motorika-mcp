@@ -1,0 +1,29 @@
+  T3: {
+    prompt:
+      'Use only the browser tools. Open these three pages in three separate browser tabs (one page per tab, all three ' +
+      'tabs open at the same time): https://example.com , https://httpbin.org/html and ' +
+      'https://en.wikipedia.org/wiki/Main_Page . Then report the document title of each tab. ' +
+      `${JSON_TAIL} Shape: {"tabs": [{"url": "...", "title": "..."}, ...]}`,
+    check(answer, evidence) {
+      const tabs = Array.isArray(answer?.tabs) ? answer.tabs : [];
+      const by = (re) => tabs.find((t) => re.test(String(t?.url ?? '')));
+      const ex = by(/example\.com/);
+      const hb = by(/httpbin\.org\/html/);
+      const wp = by(/wikipedia\.org/);
+      // httpbin.org/html has no <title>: its document.title is "". Accept "", a "no title" wording or the URL.
+      const hbTitle = String(hb?.title ?? 'MISSING');
+      const hbOk = hb && (hbTitle.trim() === '' || /no title|untitled|empty|none|httpbin\.org\/html/i.test(hbTitle));
+      const ok = {
+        example: ex?.title === 'Example Domain',
+        httpbin: Boolean(hbOk),
+        wikipedia: wp?.title === 'Wikipedia, the free encyclopedia',
+      };
+      const wrong = Object.keys(ok).filter((k) => !ok[k]);
+      // Evidence of real multi-tab use: at least two tab-opening calls (the first page may reuse the start tab).
+      const seen = evidence.tabOpens >= 2;
+      return {
+        answerOk: wrong.length === 0,
+        evidenceOk: seen,
+        detail: `${wrong.length ? `wrong: ${wrong.join(',')}` : 'three titles right'}; tab-opening calls=${evidence.tabOpens}; httpbin title=${JSON.stringify(hbTitle)}`,
+      };
+    },

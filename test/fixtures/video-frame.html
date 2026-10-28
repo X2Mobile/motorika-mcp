@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Video in a frame</title>
+<style>body { margin: 0; } video { display: block; width: 640px; height: 360px; }</style>
+</head>
+<body>
+<!-- E7: embedded cross-origin by video-xo.html (served from origin B, embedded by origin A). -->
+<video id="vx" muted preload="auto" playsinline width="640" height="360">
+  <source src="/media/colors.webm" type="video/webm">
+  <source src="/media/colors.mp4" type="video/mp4">
+</video>
+</body>
+</html>

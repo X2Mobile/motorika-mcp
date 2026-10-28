@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Fake engine host</title></head>
+<body>
+<!-- Review SEC-2: the cross-origin frame (origin B) plants a fake engine that reports counts that are not
+     non-negative integers (offscreen "abc", omitted 2.5). The server must print none of them. -->
+<h1>Fake engine host</h1>
+<iframe title="Fake" src="__ORIGIN_B__/fake-engine-frame.html" style="width:400px;height:200px"></iframe>
+</body>
+</html>

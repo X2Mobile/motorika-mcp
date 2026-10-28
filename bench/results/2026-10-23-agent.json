@@ -1,0 +1,1524 @@
+{
+  "kind": "agent",
+  "date": "2026-10-23T04:35:33.058Z",
+  "model": "claude-opus-5-5",
+  "timeout_min": 6,
+  "start": {
+    "at": "2026-10-23T04:35:33.058Z",
+    "uptime": "7:35  up 48 days, 23:48, 1 user, load averages: 3.88 4.87 6.38",
+    "swap": "total = 24576.00M  used = 23027.62M  free = 1548.38M  (encrypted)"
+  },
+  "skipped": [],
+  "runs": [
+    {
+      "contender": "x2-browser",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "x2-browser",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 15191,
+      "num_turns": 4,
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_result_chars": 2659,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1622828,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__x2-browser__navigate",
+        "mcp__x2-browser__fill_form",
+        "mcp__x2-browser__read"
+      ],
+      "wall_ms": 16262,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-x2-browser-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "playwright",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "playwright",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 25,
+      "duration_ms": 19774,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 4688,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.10582300000000003,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__playwright__browser_navigate",
+        "mcp__playwright__browser_snapshot",
+        "mcp__playwright__browser_fill_form",
+        "mcp__playwright__browser_click",
+        "mcp__playwright__browser_evaluate"
+      ],
+      "wall_ms": 20796,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-playwright-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "devtools",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "devtools",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 32,
+      "duration_ms": 16495,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 0,
+      "tool_result_chars": 3358,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.20457819999999996,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__devtools__list_pages",
+        "mcp__devtools__navigate_page",
+        "mcp__devtools__take_snapshot",
+        "mcp__devtools__fill_form",
+        "mcp__devtools__evaluate_script",
+        "mcp__devtools__click"
+      ],
+      "wall_ms": 17483,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-devtools-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "agent-infra",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "agent-infra",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 21,
+      "duration_ms": 23083,
+      "num_turns": 12,
+      "tool_calls": 11,
+      "tool_errors": 0,
+      "tool_result_chars": 3405,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1432796,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__agent-infra__browser_navigate",
+        "mcp__agent-infra__browser_form_input_fill",
+        "mcp__agent-infra__browser_click",
+        "mcp__agent-infra__browser_evaluate",
+        "mcp__agent-infra__browser_get_text"
+      ],
+      "wall_ms": 23996,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-agent-infra-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 21218,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 3517,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.13631680000000002,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 22122,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-claude-in-chrome-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "x2-browser",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "x2-browser",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 20365,
+      "num_turns": 4,
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_result_chars": 42703,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.2432262,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__x2-browser__navigate",
+        "mcp__x2-browser__type",
+        "mcp__x2-browser__read"
+      ],
+      "wall_ms": 21408,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-x2-browser-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "playwright",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "playwright",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 25,
+      "duration_ms": 19795,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 5197,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1034904,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__playwright__browser_navigate",
+        "mcp__playwright__browser_find",
+        "mcp__playwright__browser_type",
+        "mcp__playwright__browser_evaluate"
+      ],
+      "wall_ms": 20969,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-playwright-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "devtools",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "devtools",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 32,
+      "duration_ms": 24822,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 50120,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.30910180000000004,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__devtools__list_pages",
+        "mcp__devtools__navigate_page",
+        "mcp__devtools__take_snapshot",
+        "mcp__devtools__fill",
+        "mcp__devtools__click",
+        "mcp__devtools__press_key",
+        "mcp__devtools__evaluate_script"
+      ],
+      "wall_ms": 26068,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 2,
+      "file": "results/agent/2026-10-23/T2-devtools-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "agent-infra",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "agent-infra",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 21,
+      "duration_ms": 31282,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 10187,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.130193,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__agent-infra__browser_navigate",
+        "mcp__agent-infra__browser_form_input_fill",
+        "mcp__agent-infra__browser_press_key",
+        "mcp__agent-infra__browser_evaluate"
+      ],
+      "wall_ms": 32182,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-agent-infra-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 35646,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 15225,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.16330640000000002,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 36512,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-claude-in-chrome-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "x2-browser",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "x2-browser",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 15687,
+      "num_turns": 5,
+      "tool_calls": 4,
+      "tool_errors": 0,
+      "tool_result_chars": 20626,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.17318820000000001,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__x2-browser__tabs",
+        "mcp__x2-browser__navigate",
+        "mcp__x2-browser__batch"
+      ],
+      "wall_ms": 16782,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-x2-browser-rep1.jsonl",
+      "first_verdict": {
+        "success": false,
+        "detail": "three titles right; tab-opening calls=0; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "playwright",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "playwright",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 25,
+      "duration_ms": 13798,
+      "num_turns": 5,
+      "tool_calls": 4,
+      "tool_errors": 0,
+      "tool_result_chars": 2074,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.08989180000000001,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__playwright__browser_navigate",
+        "mcp__playwright__browser_tabs",
+        "mcp__playwright__browser_run_code_unsafe"
+      ],
+      "wall_ms": 14965,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-playwright-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "three titles right; tab-opening calls=2; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "devtools",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "devtools",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 32,
+      "duration_ms": 17450,
+      "num_turns": 9,
+      "tool_calls": 8,
+      "tool_errors": 0,
+      "tool_result_chars": 966,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.0973622,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__devtools__list_pages",
+        "mcp__devtools__navigate_page",
+        "mcp__devtools__new_page",
+        "mcp__devtools__evaluate_script"
+      ],
+      "wall_ms": 18493,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-devtools-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "three titles right; tab-opening calls=2; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "agent-infra",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "agent-infra",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 21,
+      "duration_ms": 19244,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_result_chars": 1895,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.08926940000000001,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__agent-infra__browser_navigate",
+        "mcp__agent-infra__browser_new_tab",
+        "mcp__agent-infra__browser_tab_list",
+        "mcp__agent-infra__browser_switch_tab",
+        "mcp__agent-infra__browser_evaluate"
+      ],
+      "wall_ms": 20189,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-agent-infra-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "three titles right; tab-opening calls=2; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 23445,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 2524,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1159302,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__tabs_create_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool"
+      ],
+      "wall_ms": 24466,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-claude-in-chrome-rep1.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "three titles right; tab-opening calls=2; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "x2-browser",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "x2-browser",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 10722,
+      "num_turns": 4,
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_result_chars": 2659,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.08390439999999999,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__x2-browser__navigate",
+        "mcp__x2-browser__fill_form",
+        "mcp__x2-browser__read"
+      ],
+      "wall_ms": 11986,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-x2-browser-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "playwright",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "playwright",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 25,
+      "duration_ms": 19733,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_result_chars": 6092,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1201922,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__playwright__browser_navigate",
+        "mcp__playwright__browser_snapshot",
+        "mcp__playwright__browser_fill_form",
+        "mcp__playwright__browser_evaluate",
+        "mcp__playwright__browser_click"
+      ],
+      "wall_ms": 20677,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-playwright-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "devtools",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "devtools",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 32,
+      "duration_ms": 23319,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 0,
+      "tool_result_chars": 3316,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.11475540000000001,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__devtools__list_pages",
+        "mcp__devtools__navigate_page",
+        "mcp__devtools__take_snapshot",
+        "mcp__devtools__fill_form",
+        "mcp__devtools__evaluate_script",
+        "mcp__devtools__click"
+      ],
+      "wall_ms": 24445,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-devtools-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "agent-infra",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "agent-infra",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 21,
+      "duration_ms": 24229,
+      "num_turns": 12,
+      "tool_calls": 11,
+      "tool_errors": 0,
+      "tool_result_chars": 3405,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1106212,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__agent-infra__browser_navigate",
+        "mcp__agent-infra__browser_form_input_fill",
+        "mcp__agent-infra__browser_click",
+        "mcp__agent-infra__browser_evaluate",
+        "mcp__agent-infra__browser_get_text"
+      ],
+      "wall_ms": 25126,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 2,
+      "file": "results/agent/2026-10-23/T1-agent-infra-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 26566,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 3553,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.1371006,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 27508,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-claude-in-chrome-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "all 7 fields echoed"
+      }
+    },
+    {
+      "contender": "x2-browser",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "x2-browser",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 11976,
+      "num_turns": 5,
+      "tool_calls": 4,
+      "tool_errors": 0,
+      "tool_result_chars": 23029,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1640788,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__x2-browser__navigate",
+        "mcp__x2-browser__find",
+        "mcp__x2-browser__type",
+        "mcp__x2-browser__read"
+      ],
+      "wall_ms": 13294,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-x2-browser-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "playwright",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "playwright",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 25,
+      "duration_ms": 22956,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 4816,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.10345839999999999,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__playwright__browser_navigate",
+        "mcp__playwright__browser_find",
+        "mcp__playwright__browser_type",
+        "mcp__playwright__browser_evaluate"
+      ],
+      "wall_ms": 23888,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-playwright-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "devtools",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "devtools",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 32,
+      "duration_ms": 18576,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_result_chars": 48887,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.2868356,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__devtools__list_pages",
+        "mcp__devtools__navigate_page",
+        "mcp__devtools__take_snapshot",
+        "mcp__devtools__fill",
+        "mcp__devtools__press_key",
+        "mcp__devtools__evaluate_script"
+      ],
+      "wall_ms": 19621,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-devtools-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "agent-infra",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "agent-infra",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 21,
+      "duration_ms": 26803,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 10370,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1302134,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact seen in tool text",
+      "tools_used": [
+        "mcp__agent-infra__browser_navigate",
+        "mcp__agent-infra__browser_form_input_fill",
+        "mcp__agent-infra__browser_press_key",
+        "mcp__agent-infra__browser_evaluate"
+      ],
+      "wall_ms": 27882,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-agent-infra-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 26450,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_result_chars": 2111,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.13896740000000002,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__computer",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 27438,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-claude-in-chrome-rep2.jsonl",
+      "first_verdict": {
+        "success": false,
+        "detail": "introduced_by=\"Anthropic\" year=\"2024\""
+      }
+    },
+    {
+      "contender": "x2-browser",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "x2-browser",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 14766,
+      "num_turns": 4,
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_result_chars": 20636,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1659488,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=3; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__x2-browser__tabs",
+        "mcp__x2-browser__batch"
+      ],
+      "wall_ms": 15986,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-x2-browser-rep2.jsonl",
+      "first_verdict": {
+        "success": false,
+        "detail": "three titles right; tab-opening calls=0; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "playwright",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "playwright",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 25,
+      "duration_ms": 11765,
+      "num_turns": 5,
+      "tool_calls": 4,
+      "tool_errors": 0,
+      "tool_result_chars": 1983,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.08353260000000001,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__playwright__browser_navigate",
+        "mcp__playwright__browser_tabs",
+        "mcp__playwright__browser_run_code_unsafe"
+      ],
+      "wall_ms": 12927,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-playwright-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "three titles right; tab-opening calls=2; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "devtools",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "devtools",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 32,
+      "duration_ms": 16759,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 0,
+      "tool_result_chars": 848,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.0927048,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__devtools__list_pages",
+        "mcp__devtools__navigate_page",
+        "mcp__devtools__new_page",
+        "mcp__devtools__evaluate_script"
+      ],
+      "wall_ms": 17756,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-devtools-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "three titles right; tab-opening calls=2; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "agent-infra",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "agent-infra",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 21,
+      "duration_ms": 20693,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_result_chars": 1895,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.0904782,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__agent-infra__browser_navigate",
+        "mcp__agent-infra__browser_new_tab",
+        "mcp__agent-infra__browser_tab_list",
+        "mcp__agent-infra__browser_switch_tab",
+        "mcp__agent-infra__browser_evaluate"
+      ],
+      "wall_ms": 21667,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-agent-infra-rep2.jsonl",
+      "first_verdict": {
+        "success": true,
+        "detail": "three titles right; tab-opening calls=2; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 24464,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_result_chars": 2920,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1390538,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool"
+      ],
+      "wall_ms": 25431,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-claude-in-chrome-rep2.jsonl",
+      "first_verdict": {
+        "success": false,
+        "detail": "three titles right; tab-opening calls=0; httpbin title=\"\""
+      }
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 52642,
+      "num_turns": 17,
+      "tool_calls": 16,
+      "tool_errors": 6,
+      "tool_result_chars": 16598,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.23447020000000005,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click"
+      ],
+      "wall_ms": 54450,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 15153,
+      "num_turns": 4,
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_result_chars": 51214,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.2722576,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_screenshot"
+      ],
+      "wall_ms": 16544,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 77453,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 56425,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.3563122,
+      "is_error": false,
+      "success": false,
+      "answer_ok": true,
+      "evidence_ok": false,
+      "detail": "three titles right; tab-opening calls=0; httpbin title=\"httpbin.org/html\"",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_press_key",
+        "mcp__browsermcp__browser_snapshot"
+      ],
+      "wall_ms": 78809,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 66137,
+      "num_turns": 17,
+      "tool_calls": 16,
+      "tool_errors": 6,
+      "tool_result_chars": 16571,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.21076359999999997,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click"
+      ],
+      "wall_ms": 67743,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T1-browsermcp-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 13630,
+      "num_turns": 4,
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_result_chars": 51214,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.269057,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_screenshot"
+      ],
+      "wall_ms": 15488,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T2-browsermcp-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 209459,
+      "num_turns": 15,
+      "tool_calls": 14,
+      "tool_errors": 2,
+      "tool_result_chars": 59680,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.7067307999999999,
+      "is_error": false,
+      "success": false,
+      "answer_ok": true,
+      "evidence_ok": false,
+      "detail": "three titles right; tab-opening calls=0; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_press_key",
+        "mcp__browsermcp__browser_snapshot",
+        "mcp__browsermcp__browser_click",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_get_console_logs"
+      ],
+      "wall_ms": 211044,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-23/T3-browsermcp-rep2.jsonl"
+    }
+  ],
+  "end": {
+    "at": "2026-10-23T04:47:51.806Z",
+    "uptime": "7:47  up 49 days, 0 sec, 1 user, load averages: 9.41 7.40 6.40",
+    "swap": "total = 23552.00M  used = 22646.00M  free = 906.00M  (encrypted)"
+  },
+  "total_cost_usd": 6.278676999999998,
+  "rescored_at": "2026-10-23T04:48:41.734Z",
+  "browsermcp_session": {
+    "date": "2026-10-23T06:43:56.014Z",
+    "model": "claude-opus-5-5",
+    "start": {
+      "at": "2026-10-23T06:43:56.014Z",
+      "uptime": "9:43  up 49 days,  1:56, 1 user, load averages: 2.10 2.31 3.30",
+      "swap": "total = 23552.00M  used = 22094.69M  free = 1457.31M  (encrypted)"
+    },
+    "end": {
+      "at": "2026-10-23T06:51:38.171Z",
+      "uptime": "9:51  up 49 days,  2:04, 1 user, load averages: 2.14 2.26 2.89",
+      "swap": "total = 23552.00M  used = 22213.50M  free = 1338.50M  (encrypted)"
+    }
+  }
+}

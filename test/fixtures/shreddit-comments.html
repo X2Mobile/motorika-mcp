@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>raw takes on agents : r/test</title></head>
+<!-- E1 (real-world feedback): a new-Reddit (shreddit) comment permalink, trimmed. Each comment body is
+     light DOM, `shreddit-comment > [slot=comment] > p`, rendered through the element's shadow root
+     (<slot name="comment">). read must show each body once, where its slot renders; find must see it.
+     Light DOM that no slot takes (UNSLOTTED-*) is not rendered and must not appear. -->
+<body>
+<script>
+  class Comment extends HTMLElement {
+    constructor() {
+      super();
+      const r = this.attachShadow({ mode: 'open' });
+      const wrap = document.createElement('div');
+      wrap.className = 'comment-wrap';
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.appendChild(document.createElement('slot')).name = 'commentMeta';
+      const body = document.createElement('div');
+      body.className = 'body';
+      body.appendChild(document.createElement('slot')).name = 'comment';
+      const kids = document.createElement('div');
+      kids.className = 'children';
+      kids.appendChild(document.createElement('slot')).name = 'children';
+      const level = document.createElement('div');
+      this.level = level;
+      wrap.append(level, meta, body, kids);
+      const st = document.createElement('style');
+      st.textContent = ':host { display: block; }';
+      r.append(st, wrap);
+    }
+    // Attributes of a parser-created element are not set yet in its constructor.
+    connectedCallback() { this.level.textContent = 'SHADOW-LEVEL-' + (this.getAttribute('depth') ?? '0'); }
+  }
+  class Tree extends HTMLElement {
+    constructor() {
+      super();
+      const r = this.attachShadow({ mode: 'open' });
+      const st = document.createElement('style');
+      st.textContent = ':host { display: block; }';
+      r.append(st, document.createElement('slot'));
+    }
+  }
+  customElements.define('shreddit-comment', Comment);
+  customElements.define('shreddit-comment-tree', Tree);
+</script>
+<main>
+  <h1>Agents thread</h1>
+  <shreddit-comment-tree>
+    <shreddit-comment thingid="t1_aaa" depth="0">
+      <div slot="commentMeta"><a href="/user/alice">alice</a> 2h ago</div>
+      <div slot="comment" id="t1_aaa-post-rtjson-content"><p>These are raw takes, unfiltered: FIRST-BODY.</p><p>A second paragraph of the first comment.</p></div>
+      <div slot="nowhere">UNSLOTTED-LIGHT-ONE</div>
+      <shreddit-comment slot="children" thingid="t1_bbb" depth="1">
+        <div slot="commentMeta"><a href="/user/bob">bob</a> 1h ago</div>
+        <div slot="comment" id="t1_bbb-post-rtjson-content"><p>A nested reply: SECOND-BODY.</p></div>
+        <span>UNSLOTTED-LIGHT-TWO</span>
+      </shreddit-comment>
+    </shreddit-comment>
+  </shreddit-comment-tree>
+</main>
+</body>
+</html>

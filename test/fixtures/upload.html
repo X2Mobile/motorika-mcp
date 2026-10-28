@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Upload cases</title>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D8 oracle: /submit?form=direct and /submit?form=chooser record the file name and bytes. -->
+<h1>Upload cases</h1>
+<label>Upload file <input id="direct" type="file"></label>
+<button id="chooser" type="button">Choose file</button>
+<input id="hidden-file" type="file" style="display:none">
+<script>
+  const send = (form, input) => {
+    const fd = new FormData();
+    for (const f of input.files) fd.append('file', f, f.name);
+    fetch('/submit?form=' + form, { method: 'POST', body: fd }).then(() => __log('uploaded:' + form));
+  };
+  const direct = document.getElementById('direct');
+  const hidden = document.getElementById('hidden-file');
+  direct.addEventListener('change', () => send('direct', direct));
+  hidden.addEventListener('change', () => send('chooser', hidden));
+  document.getElementById('chooser').addEventListener('click', () => hidden.click());
+</script>
+</body>
+</html>

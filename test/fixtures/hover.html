@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hover menu</title>
+<style>
+  .menu { display: inline-block; position: relative; }
+  .menu .submenu { display: none; position: absolute; top: 100%; left: 0; margin: 0; padding: 4px; list-style: none; background: #eee; }
+  .menu:hover .submenu { display: block; }
+</style>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D5: the submenu is CSS :hover only (no script reveals it). Oracle: __counts.hiddenItem. -->
+<h1>Hover menu</h1>
+<nav class="menu" aria-label="Products menu">
+  <button type="button" id="trigger">Products</button>
+  <ul class="submenu">
+    <li><button type="button" id="hidden-item" onclick="__count('hiddenItem')">Hidden item</button></li>
+  </ul>
+</nav>
+</body>
+</html>

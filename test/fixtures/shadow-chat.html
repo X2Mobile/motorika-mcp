@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Chat</title></head>
+<!-- E1 (real-world feedback): Reddit Chat keeps its content inside nested open shadow roots
+     (body.innerText was 32 chars, 25 shadow hosts). read must return the messages; find must see them. -->
+<body>
+<script>
+  function host(tag, build) {
+    customElements.define(tag, class extends HTMLElement {
+      constructor() {
+        super();
+        const r = this.attachShadow({ mode: 'open' });
+        const st = document.createElement('style');
+        st.textContent = ':host { display: block; }';
+        r.append(st);
+        build(r);
+      }
+    });
+  }
+  host('chat-message', (r) => {
+    const p = document.createElement('p');
+    p.className = 'text';
+    r.append(p);
+    queueMicrotask(() => { p.textContent = r.host.getAttribute('text'); });
+  });
+  host('chat-room', (r) => {
+    const h = document.createElement('h2');
+    h.textContent = 'Room: agents';
+    const list = document.createElement('div');
+    list.className = 'messages';
+    for (const t of ['MSG-ONE: hello from deep in the shadow', 'MSG-TWO: second message here', 'MSG-THREE: and a third']) {
+      const m = document.createElement('chat-message');
+      m.setAttribute('text', t);
+      list.append(m);
+    }
+    r.append(h, list);
+  });
+  host('chat-app', (r) => {
+    const shell = document.createElement('div');
+    shell.className = 'shell';
+    shell.append(document.createElement('chat-room'));
+    r.append(shell);
+  });
+</script>
+<div>Chat</div>
+<chat-app></chat-app>
+</body>
+</html>

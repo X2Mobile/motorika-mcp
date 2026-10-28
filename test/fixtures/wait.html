@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Wait cases</title><script src="/oracle.js"></script></head>
+<body>
+<!-- D11: "Start timers" schedules, 1000 ms later and all at once:
+     text "Appeared later" added; "Vanishing text" removed; "Hide me later" hidden;
+     "Show me later" shown; URL becomes ?step=2 via pushState. Text "Never appears" never appears. -->
+<h1>Wait cases</h1>
+<button type="button" id="start" onclick="startTimers()">Start timers</button>
+<p id="vanishing">Vanishing text</p>
+<button type="button" id="hide-later">Hide me later</button>
+<button type="button" id="show-later" style="display:none">Show me later</button>
+<div id="slot"></div>
+<script>
+  window.startTimers = () => {
+    window.__startedAt = performance.now();
+    setTimeout(() => {
+      const p = document.createElement('p');
+      p.textContent = 'Appeared later';
+      document.getElementById('slot').append(p);
+      document.getElementById('vanishing').remove();
+      document.getElementById('hide-later').style.display = 'none';
+      document.getElementById('show-later').style.display = '';
+      history.pushState({}, '', location.pathname + '?step=2');
+      window.__firedAt = performance.now();
+    }, 1000);
+  };
+</script>
+</body>
+</html>

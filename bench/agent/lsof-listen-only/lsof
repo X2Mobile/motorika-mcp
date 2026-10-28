@@ -1,0 +1,4 @@
+#!/bin/sh
+# First on PATH for BrowserMCP (see contenders.mjs): its startup `lsof -ti:9009 | xargs kill -9` must find
+# only listeners, never Chrome's network service connected to the port.
+exec /usr/sbin/lsof -sTCP:LISTEN "$@"

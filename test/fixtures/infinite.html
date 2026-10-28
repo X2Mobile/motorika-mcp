@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Infinite scroll</title>
+<style>body { margin: 0; } #feed li { height: 60px; border-bottom: 1px solid #ccc; }</style>
+</head>
+<body>
+<!-- D6 oracle: #feed li count and document.documentElement.scrollHeight grow when the bottom is reached. -->
+<h1>Infinite feed</h1>
+<ul id="feed"></ul>
+<script>
+  const feed = document.getElementById('feed');
+  let n = 0;
+  const more = () => {
+    for (let i = 0; i < 30 && n < 300; i++) {
+      n += 1;
+      const li = document.createElement('li');
+      li.textContent = 'Feed item ' + n;
+      feed.append(li);
+    }
+  };
+  more();
+  window.addEventListener('scroll', () => {
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 300) more();
+  });
+</script>
+</body>
+</html>

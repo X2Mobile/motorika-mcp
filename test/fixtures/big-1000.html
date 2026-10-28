@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Big 1000</title></head>
+<body>
+<!-- C5/F: exactly 1000 button.item elements named "Item 1".."Item 1000", in document order. -->
+<h1>Big 1000</h1>
+<div id="items"></div>
+<script>
+  const host = document.getElementById('items');
+  for (let i = 1; i <= 1000; i++) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'item';
+    b.textContent = 'Item ' + i;
+    host.append(b);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Deep chains</title></head>
+<!-- Fix round 5, items 1 and 4. ?shadow=D: a chain of D open shadow hosts, each holding a paragraph
+     "Level k words" and the next host, built iteratively (a connectedCallback chain stops at about 43
+     levels in Chrome's custom-element reaction stack, which is what the reviewer's page measured).
+     ?contents=D&copies=M: M chains of D nested display:contents divs, each ending in "Deep text j here". -->
+<body>
+<main id="m"></main>
+<script>
+  const q = new URLSearchParams(location.search);
+  const m = document.getElementById('m');
+  const d = Number(q.get('shadow') ?? 0);
+  let cur = m;
+  for (let k = d - 1; k >= 0; k--) {
+    const h = document.createElement('x-h');
+    cur.appendChild(h);
+    const r = h.attachShadow({ mode: 'open' });
+    const p = document.createElement('p');
+    p.textContent = 'Level ' + k + ' words';
+    const w = document.createElement('div');
+    r.append(p, w);
+    cur = w;
+  }
+  const cd = Number(q.get('contents') ?? 0);
+  const copies = Number(q.get('copies') ?? 0);
+  for (let j = 0; j < copies; j++) {
+    let c = document.createElement('div');
+    m.appendChild(c);
+    for (let i = 0; i < cd; i++) {
+      const x = document.createElement('div');
+      x.style.display = 'contents';
+      c.appendChild(x);
+      c = x;
+    }
+    const p = document.createElement('p');
+    p.textContent = 'Deep text ' + j + ' here';
+    c.appendChild(p);
+  }
+</script>
+</body>
+</html>

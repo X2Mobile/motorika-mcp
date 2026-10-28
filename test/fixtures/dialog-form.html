@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Dialog form</title><script src="/oracle.js"></script></head>
+<body>
+<!-- R10 (review-lens decision 10): Field B raises confirm() once, on its first input OR change event
+     (Playwright's fill fires input, change only fires on blur; this makes the dialog open during B's own
+     fill, so C and D are strictly later fields). The form POSTs to /submit?form=dlg.
+     Oracle: Field C / Field D values, fixture record, window.__confirmB. -->
+<h1>Dialog form</h1>
+<form method="post" action="/submit?form=dlg" aria-label="Dialog form">
+  <label>Field A <input id="fa" name="a" type="text"></label>
+  <label>Field B <input id="fb" name="b" type="text"></label>
+  <label>Field C <input id="fc" name="c" type="text"></label>
+  <label>Field D <input id="fd" name="d" type="text"></label>
+  <button type="submit">Go</button>
+</form>
+<script>
+  window.__confirmB = 'unset';
+  const fb = document.getElementById('fb');
+  const raiseOnce = () => {
+    if (window.__confirmB !== 'unset') return;
+    window.__confirmB = 'pending';
+    window.__confirmB = confirm('Confirm field B?');
+  };
+  fb.addEventListener('input', raiseOnce);
+  fb.addEventListener('change', raiseOnce);
+</script>
+</body>
+</html>

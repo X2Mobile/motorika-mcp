@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Key cases</title>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D4 oracle: document.activeElement.id, textarea selection, window.__events, select.selectedIndex. -->
+<h1>Key cases</h1>
+<label>First field <input id="first" type="text"></label>
+<label>Second field <input id="second" type="text"></label>
+<label>Select me <textarea id="selectme">select all of this text</textarea></label>
+<form id="enter-form" aria-label="Enter form" onsubmit="event.preventDefault(); __log('submitted:' + document.getElementById('enter').value)">
+  <label>Enter field <input id="enter" type="text" value="pressed"></label>
+</form>
+<label>Pick one
+  <select id="pick" size="4">
+    <option selected>Option A</option><option>Option B</option><option>Option C</option><option>Option D</option>
+  </select>
+</label>
+</body>
+</html>

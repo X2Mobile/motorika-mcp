@@ -1,0 +1,64 @@
+  T5: {
+    url: 'https://news.ycombinator.com/item?id=1626305',
+    prompt:
+      'Use only the browser tools. Open the Hacker News thread https://news.ycombinator.com/item?id=1626305 and answer ' +
+      'these three questions from the thread page itself (read the comments; do not use any other site or search): ' +
+      '(1) A top-level comment says everybody should read a certain blog post about grep. What is the commenter\'s ' +
+      'username, and what is the post\'s title as quoted in that comment? (2) A top-level comment mentions a podcast ' +
+      'that did an episode on the Boyer-Moore algorithm. What is the commenter\'s username, and what is the podcast ' +
+      'called? (3) A top-level comment says Plan 9\'s grep is competitive with GNU grep in the commenter\'s simple test. ' +
+      `Who wrote it, and who wrote the direct reply to it? ${JSON_TAIL} ` +
+      'Shape: {"blog_post": {"user": "...", "title": "..."}, "podcast": {"user": "...", "name": "..."}, "plan9": {"user": "...", "reply_by": "..."}}',
+    expected: { blogUser: 'Qerub', blogTitle: /treacherous optimization/i, podUser: 'frou_dh', podName: /security now/i, planUser: 'konad', planReply: 'kragen' },
+    // Cheap start-of-run check that the live page still holds these facts, deep in the page. A mismatch marks the
+    // run invalid (not failed) and no agent is started.
+    // HN answers 419 "Sorry" to a made-up "Mozilla/5.0 (...)" user agent (seen 2026-10-26); an honest one gets 200.
+    // One retry, so a single transient error does not void a run.
+    async precheck({ retryMs = 5000 } = {}) {
+      let res;
+      for (let attempt = 1; attempt <= 2; attempt += 1) {
+        try {
+          res = await fetch(TASKS.T5.url, { headers: { 'user-agent': 'x2-browser-bench/1.0 (precheck)' }, signal: AbortSignal.timeout(20_000) });
+          if (res.ok) break;
+        } catch (e) {
+          if (attempt === 2) return `precheck unavailable: ${e?.message ?? e}`;
+        }
+        if (attempt === 1) await new Promise((r) => setTimeout(r, retryMs));
+      }
+      if (!res.ok) return `precheck unavailable: HTTP ${res.status}`;
+      const html = await res.text();
+      const miss = [];
+      if (!html.includes('<title>Why GNU grep is Fast | Hacker News')) miss.push('title');
+      if (!html.includes('115&nbsp;comments')) miss.push('115 comments header');
+      for (const s of ['Qerub', 'frou_dh', 'konad', 'kragen', 'id="1629048"']) if (!html.includes(s)) miss.push(s);
+      for (const s of ['Treacherous Optimization', 'Security Now', 'Plan9 grep']) {
+        const at = html.indexOf(s);
+        if (at < 0) miss.push(s);
+        else if (at < html.length * 0.6) miss.push(`${s} no longer deep (at ${Math.round((100 * at) / html.length)}%)`);
+      }
+      return miss.length ? `page changed: ${miss.join(', ')}` : null;
+    },
+    check(answer, evidence) {
+      const e = TASKS.T5.expected;
+      // Usernames compare case-insensitively: no two usernames on the page differ only by case (checked 2026-10-26).
+      const s = (v) => String(v ?? '').trim().replace(/^@/, '');
+      const u = (v) => s(v).toLowerCase();
+      const ok = {
+        blog_user: u(answer?.blog_post?.user) === e.blogUser.toLowerCase(),
+        blog_title: e.blogTitle.test(s(answer?.blog_post?.title)),
+        podcast_user: u(answer?.podcast?.user) === e.podUser.toLowerCase(),
+        podcast_name: e.podName.test(s(answer?.podcast?.name)),
+        plan9_user: u(answer?.plan9?.user) === e.planUser.toLowerCase(),
+        plan9_reply: u(answer?.plan9?.reply_by) === e.planReply.toLowerCase(),
+      };
+      const wrong = Object.keys(ok).filter((k) => !ok[k]);
+      // The three deep commenters came back through a tool (they are not guessable), or, for pixel-only tools,
+      // the thread was opened and images were taken.
+      const lowText = evidence.resultText.toLowerCase();
+      const users = [e.blogUser, e.podUser, e.planUser].filter((name) => lowText.includes(name.toLowerCase()));
+      const reached = /1626305/.test(evidence.urls.join(' ') + evidence.resultText);
+      const inText = users.length === 3;
+      const seen = inText || (reached && evidence.images > 0);
+      const how = inText ? 'all three commenters seen in tool text' : reached && evidence.images ? `thread reached, ${users.length}/3 commenters in text, rest only in screenshots (not text-verifiable)` : `thread ${reached ? 'reached' : 'not reached'}, ${users.length}/3 commenters in tool text`;
+      return { answerOk: wrong.length === 0, evidenceOk: seen, detail: `${wrong.length ? `wrong: ${wrong.join(',')}` : 'three answers right'}; ${how}` };
+    },

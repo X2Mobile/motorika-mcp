@@ -1,0 +1,2088 @@
+{
+  "kind": "agent",
+  "date": "2026-10-27T15:47:50.789Z",
+  "model": "claude-opus-5-5",
+  "timeout_min": 6,
+  "plan": {
+    "date": "2026-10-27",
+    "tag": "r2-realchrome",
+    "model": "claude-opus-5-5",
+    "tasks": [
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5"
+    ],
+    "reps": 5,
+    "only": "claude-in-chrome,browsermcp",
+    "balanced": true,
+    "seed": 1443631965,
+    "warmup": true,
+    "timeout_min": 6,
+    "budget_usd": 3,
+    "planned_orders": [
+      {
+        "block": "1|T1",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "1|T2",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "1|T3",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "1|T4",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "1|T5",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "2|T1",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "2|T2",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "2|T3",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "2|T4",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "2|T5",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "3|T1",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "3|T2",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "3|T3",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "3|T4",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "3|T5",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "4|T1",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "4|T2",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "4|T3",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "4|T4",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "4|T5",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "5|T1",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "5|T2",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "5|T3",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "5|T4",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "5|T5",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      }
+    ],
+    "orders": [
+      {
+        "block": "1|T1",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "1|T2",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "1|T3",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "1|T4",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "1|T5",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "2|T1",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "2|T2",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "2|T3",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "2|T4",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "2|T5",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "3|T1",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "3|T2",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "3|T3",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "3|T4",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "3|T5",
+        "order": [
+          "browsermcp",
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "4|T1",
+        "order": [
+          "claude-in-chrome",
+          "browsermcp"
+        ]
+      },
+      {
+        "block": "4|T2",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "4|T3",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "4|T4",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "4|T5",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "5|T1",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "5|T2",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "5|T3",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "5|T4",
+        "order": [
+          "claude-in-chrome"
+        ]
+      },
+      {
+        "block": "5|T5",
+        "order": [
+          "claude-in-chrome"
+        ]
+      }
+    ]
+  },
+  "start": {
+    "at": "2026-10-27T15:47:50.789Z",
+    "uptime": "17:47  up 3 days, 18:40, 1 user, load averages: 4.76 3.39 3.00",
+    "swap": "total = 6144.00M  used = 4861.00M  free = 1283.00M  (encrypted)"
+  },
+  "skipped": [
+    {
+      "contender": "browsermcp",
+      "reason": "T1 failed twice; remaining agent runs stopped per the budget rule"
+    }
+  ],
+  "runs": [
+    {
+      "contender": "browsermcp",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": null,
+      "num_turns": null,
+      "tool_calls": 20,
+      "tool_errors": 9,
+      "tool_result_chars": 5741,
+      "tool_result_images": 4,
+      "total_cost_usd": null,
+      "is_error": null,
+      "success": false,
+      "answer_ok": false,
+      "evidence_ok": false,
+      "detail": "no parseable ```json answer",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click",
+        "mcp__browsermcp__browser_snapshot",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_wait"
+      ],
+      "wall_ms": 360024,
+      "exit": null,
+      "signal": "SIGKILL",
+      "timedOut": true,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T1",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 48091,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 3981,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.1336762,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__read_page",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 48999,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-claude-in-chrome-rep1.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 25494,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 1819,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.11325819999999999,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__computer",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 26557,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-claude-in-chrome-rep1.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T2",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 191259,
+      "num_turns": 14,
+      "tool_calls": 13,
+      "tool_errors": 4,
+      "tool_result_chars": 96835,
+      "tool_result_images": 4,
+      "total_cost_usd": 0.5889532,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_snapshot",
+        "mcp__browsermcp__browser_click",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_press_key",
+        "mcp__browsermcp__browser_wait"
+      ],
+      "wall_ms": 192690,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 56031,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 51608,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.3212072,
+      "is_error": false,
+      "success": false,
+      "answer_ok": true,
+      "evidence_ok": false,
+      "detail": "three titles right; tab-opening calls=0; httpbin title=\"httpbin.org/html\"",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_press_key",
+        "mcp__browsermcp__browser_snapshot",
+        "mcp__browsermcp__browser_screenshot"
+      ],
+      "wall_ms": 57382,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T3",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 20487,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 2514,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.10234740000000002,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__tabs_create_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool"
+      ],
+      "wall_ms": 21459,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-claude-in-chrome-rep1.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T4",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 59223,
+      "num_turns": 14,
+      "tool_calls": 13,
+      "tool_errors": 0,
+      "tool_result_chars": 7044,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.2351598,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "order id matches the shop log; logged order right",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__find",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "shop_run_id": "O7RRIUSU35CQXPOD",
+      "shop_orders": [
+        {
+          "run_id": "O7RRIUSU35CQXPOD",
+          "order_id": "AZSQUTOL",
+          "items": [
+            "Canvas Field Jacket"
+          ],
+          "first_name": "Ann",
+          "last_name": "Bench",
+          "postcode": "10115",
+          "item_total": 49.99,
+          "tax": 4,
+          "total": 53.99,
+          "at": "2026-10-27T16:01:03.174Z"
+        }
+      ],
+      "wall_ms": 60253,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-claude-in-chrome-rep1.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T4",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": null,
+      "num_turns": null,
+      "tool_calls": 35,
+      "tool_errors": 9,
+      "tool_result_chars": 15498,
+      "tool_result_images": 5,
+      "total_cost_usd": null,
+      "is_error": null,
+      "success": false,
+      "answer_ok": false,
+      "evidence_ok": false,
+      "detail": "no parseable ```json answer",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_snapshot",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_wait",
+        "mcp__browsermcp__browser_click",
+        "mcp__browsermcp__browser_press_key"
+      ],
+      "shop_run_id": "DAP4H4FLINDL5WBN",
+      "shop_orders": [],
+      "wall_ms": 360026,
+      "exit": null,
+      "signal": "SIGKILL",
+      "timedOut": true,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T5",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 234699,
+      "num_turns": 39,
+      "tool_calls": 38,
+      "tool_errors": 4,
+      "tool_result_chars": 11201,
+      "tool_result_images": 18,
+      "total_cost_usd": 0.5542648000000001,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; thread reached, 0/3 commenters in text, rest only in screenshots (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_press_key",
+        "mcp__browsermcp__browser_hover"
+      ],
+      "wall_ms": 236143,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-browsermcp-rep1.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T5",
+      "rep": 1,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 23538,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 39053,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.21958760000000002,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; all three commenters seen in tool text",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__get_page_text",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 24521,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-claude-in-chrome-rep1.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 34370,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 4018,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.135412,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__read_page",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 35280,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-claude-in-chrome-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T1",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 58438,
+      "num_turns": 11,
+      "tool_calls": 10,
+      "tool_errors": 0,
+      "tool_result_chars": 15941,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1864208,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click"
+      ],
+      "wall_ms": 59908,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-browsermcp-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 22182,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 1,
+      "tool_result_chars": 48183,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.2673138,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_wait",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_screenshot"
+      ],
+      "wall_ms": 24045,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-browsermcp-rep2.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T2",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 23700,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 1854,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.10994480000000001,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__computer",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 24629,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-claude-in-chrome-rep2.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 21675,
+      "num_turns": 5,
+      "tool_calls": 4,
+      "tool_errors": 0,
+      "tool_result_chars": 1919,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1043818,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch"
+      ],
+      "wall_ms": 22626,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-claude-in-chrome-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T3",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 72363,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 53181,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.3248536,
+      "is_error": false,
+      "success": false,
+      "answer_ok": true,
+      "evidence_ok": false,
+      "detail": "three titles right; tab-opening calls=0; httpbin title=\"httpbin.org/html\"",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_press_key",
+        "mcp__browsermcp__browser_snapshot"
+      ],
+      "wall_ms": 73792,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-browsermcp-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T4",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 58635,
+      "num_turns": 13,
+      "tool_calls": 12,
+      "tool_errors": 1,
+      "tool_result_chars": 10142,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.16762979999999997,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "order id matches the shop log; logged order right",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click"
+      ],
+      "shop_run_id": "FDTBPHL2SEN642V4",
+      "shop_orders": [
+        {
+          "run_id": "FDTBPHL2SEN642V4",
+          "order_id": "ZTMIYP3H",
+          "items": [
+            "Canvas Field Jacket"
+          ],
+          "first_name": "Ann",
+          "last_name": "Bench",
+          "postcode": "10115",
+          "item_total": 49.99,
+          "tax": 4,
+          "total": 53.99,
+          "at": "2026-10-27T16:16:57.649Z"
+        }
+      ],
+      "wall_ms": 60089,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-browsermcp-rep2.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T4",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 69862,
+      "num_turns": 19,
+      "tool_calls": 18,
+      "tool_errors": 1,
+      "tool_result_chars": 8222,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.26750680000000004,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "order id matches the shop log; logged order right",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__get_page_text",
+        "mcp__claude-in-chrome__find",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "shop_run_id": "3VBDUDJFSF7I3OJE",
+      "shop_orders": [
+        {
+          "run_id": "3VBDUDJFSF7I3OJE",
+          "order_id": "5AVLGI7S",
+          "items": [
+            "Canvas Field Jacket"
+          ],
+          "first_name": "Ann",
+          "last_name": "Bench",
+          "postcode": "10115",
+          "item_total": 49.99,
+          "tax": 4,
+          "total": 53.99,
+          "at": "2026-10-27T16:18:10.198Z"
+        }
+      ],
+      "wall_ms": 70866,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-claude-in-chrome-rep2.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T5",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 26121,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 1,
+      "tool_result_chars": 39140,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.23421380000000003,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; all three commenters seen in tool text",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__get_page_text",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 27093,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-claude-in-chrome-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T5",
+      "rep": 2,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 104397,
+      "num_turns": 24,
+      "tool_calls": 23,
+      "tool_errors": 1,
+      "tool_result_chars": 3890,
+      "tool_result_images": 11,
+      "total_cost_usd": 0.35731880000000005,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; thread reached, 0/3 commenters in text, rest only in screenshots (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_press_key"
+      ],
+      "wall_ms": 106172,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-browsermcp-rep2.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T1",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 60047,
+      "num_turns": 16,
+      "tool_calls": 15,
+      "tool_errors": 5,
+      "tool_result_chars": 16426,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.20462260000000004,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click"
+      ],
+      "wall_ms": 61439,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-browsermcp-rep3.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T1",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 38095,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 3654,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.122853,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 39056,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-claude-in-chrome-rep3.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T2",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 29480,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 1831,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.1104234,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__computer",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 30484,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-claude-in-chrome-rep3.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T2",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 18792,
+      "num_turns": 4,
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_result_chars": 47970,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.2608872,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_screenshot"
+      ],
+      "wall_ms": 20392,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-browsermcp-rep3.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T3",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 30010,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 50776,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.2917784,
+      "is_error": false,
+      "success": false,
+      "answer_ok": true,
+      "evidence_ok": false,
+      "detail": "three titles right; tab-opening calls=0; httpbin title=\"httpbin.org/html\"",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_press_key",
+        "mcp__browsermcp__browser_screenshot"
+      ],
+      "wall_ms": 31538,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-browsermcp-rep3.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T3",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 25274,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 2258,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.11372559999999998,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool"
+      ],
+      "wall_ms": 26291,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-claude-in-chrome-rep3.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T4",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 75540,
+      "num_turns": 17,
+      "tool_calls": 16,
+      "tool_errors": 1,
+      "tool_result_chars": 7975,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.2526712,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "order id matches the shop log; logged order right",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__find",
+        "mcp__claude-in-chrome__javascript_tool"
+      ],
+      "shop_run_id": "TOQ54D4ZD7RYTIS7",
+      "shop_orders": [
+        {
+          "run_id": "TOQ54D4ZD7RYTIS7",
+          "order_id": "X7JSIBAH",
+          "items": [
+            "Canvas Field Jacket"
+          ],
+          "first_name": "Ann",
+          "last_name": "Bench",
+          "postcode": "10115",
+          "item_total": 49.99,
+          "tax": 4,
+          "total": 53.99,
+          "at": "2026-10-27T16:25:39.979Z"
+        }
+      ],
+      "wall_ms": 76497,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-claude-in-chrome-rep3.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T4",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 55168,
+      "num_turns": 13,
+      "tool_calls": 12,
+      "tool_errors": 1,
+      "tool_result_chars": 10142,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1668982,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "order id matches the shop log; logged order right",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click"
+      ],
+      "shop_run_id": "3ZDUDCIMW26LZJL3",
+      "shop_orders": [
+        {
+          "run_id": "3ZDUDCIMW26LZJL3",
+          "order_id": "U2MJKXMK",
+          "items": [
+            "Canvas Field Jacket"
+          ],
+          "first_name": "Ann",
+          "last_name": "Bench",
+          "postcode": "10115",
+          "item_total": 49.99,
+          "tax": 4,
+          "total": 53.99,
+          "at": "2026-10-27T16:26:39.952Z"
+        }
+      ],
+      "wall_ms": 56596,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-browsermcp-rep3.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T5",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": 82321,
+      "num_turns": 25,
+      "tool_calls": 24,
+      "tool_errors": 0,
+      "tool_result_chars": 3994,
+      "tool_result_images": 12,
+      "total_cost_usd": 0.29422760000000003,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; thread reached, 0/3 commenters in text, rest only in screenshots (not text-verifiable)",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_press_key"
+      ],
+      "wall_ms": 83745,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-browsermcp-rep3.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T5",
+      "rep": 3,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 28115,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 1,
+      "tool_result_chars": 39257,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.2311664,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; all three commenters seen in tool text",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__get_page_text"
+      ],
+      "wall_ms": 29167,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-claude-in-chrome-rep3.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T1",
+      "rep": 4,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 26048,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 3516,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.1251696,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 27019,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-claude-in-chrome-rep4.jsonl"
+    },
+    {
+      "contender": "browsermcp",
+      "task": "T1",
+      "rep": 4,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "browsermcp",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 12,
+      "duration_ms": null,
+      "num_turns": null,
+      "tool_calls": 21,
+      "tool_errors": 12,
+      "tool_result_chars": 8102,
+      "tool_result_images": 0,
+      "total_cost_usd": null,
+      "is_error": null,
+      "success": false,
+      "answer_ok": false,
+      "evidence_ok": false,
+      "detail": "no parseable ```json answer",
+      "tools_used": [
+        "mcp__browsermcp__browser_navigate",
+        "mcp__browsermcp__browser_type",
+        "mcp__browsermcp__browser_click",
+        "mcp__browsermcp__browser_snapshot",
+        "mcp__browsermcp__browser_screenshot",
+        "mcp__browsermcp__browser_get_console_logs",
+        "mcp__browsermcp__browser_hover",
+        "mcp__browsermcp__browser_press_key"
+      ],
+      "wall_ms": 360021,
+      "exit": null,
+      "signal": "SIGKILL",
+      "timedOut": true,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-browsermcp-rep4.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T2",
+      "rep": 4,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 34167,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 1799,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.1055674,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__computer",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 35123,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-claude-in-chrome-rep4.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T3",
+      "rep": 4,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 21184,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 2521,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.10729459999999999,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__tabs_create_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__javascript_tool"
+      ],
+      "wall_ms": 22566,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-claude-in-chrome-rep4.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T4",
+      "rep": 4,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 69733,
+      "num_turns": 14,
+      "tool_calls": 13,
+      "tool_errors": 0,
+      "tool_result_chars": 7419,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.2380054,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "order id matches the shop log; logged order right",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__find",
+        "mcp__claude-in-chrome__javascript_tool"
+      ],
+      "shop_run_id": "VDOEVMFRM5YKR7FV",
+      "shop_orders": [
+        {
+          "run_id": "VDOEVMFRM5YKR7FV",
+          "order_id": "2CXHXSTM",
+          "items": [
+            "Canvas Field Jacket"
+          ],
+          "first_name": "Ann",
+          "last_name": "Bench",
+          "postcode": "10115",
+          "item_total": 49.99,
+          "tax": 4,
+          "total": 53.99,
+          "at": "2026-10-27T16:37:31.988Z"
+        }
+      ],
+      "wall_ms": 70659,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-claude-in-chrome-rep4.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T5",
+      "rep": 4,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 32952,
+      "num_turns": 7,
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_result_chars": 39312,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.24787060000000002,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; all three commenters seen in tool text",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__get_page_text",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 33853,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-claude-in-chrome-rep4.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T1",
+      "rep": 5,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 24828,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 3554,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.125227,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "all 7 fields echoed",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 25782,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T1-claude-in-chrome-rep5.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T2",
+      "rep": 5,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 34516,
+      "num_turns": 6,
+      "tool_calls": 5,
+      "tool_errors": 0,
+      "tool_result_chars": 1775,
+      "tool_result_images": 2,
+      "total_cost_usd": 0.10901660000000002,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "introduced_by=\"Anthropic\" year=\"2024\"; fact only in a screenshot (not text-verifiable)",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__computer",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 35458,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T2-claude-in-chrome-rep5.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T3",
+      "rep": 5,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 20928,
+      "num_turns": 5,
+      "tool_calls": 4,
+      "tool_errors": 0,
+      "tool_result_chars": 2277,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.1035228,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three titles right; tab-opening calls=2; httpbin title=\"\"",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch"
+      ],
+      "wall_ms": 22000,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T3-claude-in-chrome-rep5.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T4",
+      "rep": 5,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 69387,
+      "num_turns": 17,
+      "tool_calls": 16,
+      "tool_errors": 1,
+      "tool_result_chars": 8088,
+      "tool_result_images": 1,
+      "total_cost_usd": 0.2676708,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "order id matches the shop log; logged order right",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__browser_batch",
+        "mcp__claude-in-chrome__find",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "shop_run_id": "AHKMRM7ACZJOI47T",
+      "shop_orders": [
+        {
+          "run_id": "AHKMRM7ACZJOI47T",
+          "order_id": "AODXEA4I",
+          "items": [
+            "Canvas Field Jacket"
+          ],
+          "first_name": "Ann",
+          "last_name": "Bench",
+          "postcode": "10115",
+          "item_total": 49.99,
+          "tax": 4,
+          "total": 53.99,
+          "at": "2026-10-27T16:40:52.608Z"
+        }
+      ],
+      "wall_ms": 70677,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T4-claude-in-chrome-rep5.jsonl"
+    },
+    {
+      "contender": "claude-in-chrome",
+      "task": "T5",
+      "rep": 5,
+      "model": "claude-opus-5-5",
+      "mcp_servers": [
+        {
+          "name": "claude-in-chrome",
+          "status": "connected",
+          "source": "dynamic"
+        }
+      ],
+      "browser_tools_available": 22,
+      "duration_ms": 35319,
+      "num_turns": 8,
+      "tool_calls": 7,
+      "tool_errors": 1,
+      "tool_result_chars": 39349,
+      "tool_result_images": 0,
+      "total_cost_usd": 0.24877339999999998,
+      "is_error": false,
+      "success": true,
+      "answer_ok": true,
+      "evidence_ok": true,
+      "detail": "three answers right; all three commenters seen in tool text",
+      "tools_used": [
+        "mcp__claude-in-chrome__tabs_context_mcp",
+        "mcp__claude-in-chrome__navigate",
+        "mcp__claude-in-chrome__javascript_tool",
+        "mcp__claude-in-chrome__get_page_text",
+        "mcp__claude-in-chrome__tabs_close_mcp"
+      ],
+      "wall_ms": 36224,
+      "exit": 0,
+      "signal": null,
+      "timedOut": false,
+      "reaped": 0,
+      "file": "results/agent/2026-10-27-r2-realchrome/T5-claude-in-chrome-rep5.jsonl"
+    }
+  ],
+  "warmups": [
+    {
+      "contender": "browsermcp",
+      "cost_usd": 0.065568,
+      "cache_write": 8185,
+      "cache_read": 0
+    },
+    {
+      "contender": "claude-in-chrome",
+      "cost_usd": 0.046486,
+      "cache_write": 5474,
+      "cache_read": 13030
+    }
+  ],
+  "end": {
+    "at": "2026-10-27T16:41:43.137Z",
+    "uptime": "18:41  up 3 days, 19:34, 1 user, load averages: 3.22 3.31 3.31",
+    "swap": "total = 6144.00M  used = 4773.00M  free = 1371.00M  (encrypted)"
+  },
+  "total_cost_usd": 8.150822200000002
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Long page</title></head>
+<!-- Fix round 5, item 2: ?n=N sections of "Body k lorem"; ?shape=plain (no shadow DOM), plus1 (one
+     cookie-banner shadow host at the end) or slotone (every section slotted into one host). -->
+<body>
+<main id="m"></main>
+<script>
+  const q = new URLSearchParams(location.search);
+  const n = Number(q.get('n') ?? 1000);
+  const shape = q.get('shape') ?? 'plain';
+  const m = document.getElementById('m');
+  customElements.define('x-c', class extends HTMLElement {
+    constructor() { super(); const r = this.attachShadow({ mode: 'open' }); const a = document.createElement('article'); const h = document.createElement('h2'); h.textContent = 'Banner'; const s = document.createElement('slot'); s.name = 'comment'; a.append(h, s); r.append(a); }
+  });
+  customElements.define('x-list', class extends HTMLElement {
+    constructor() { super(); const r = this.attachShadow({ mode: 'open' }); const w = document.createElement('div'); w.append(document.createElement('slot')); r.append(w); }
+  });
+  const holder = shape === 'slotone' ? m.appendChild(document.createElement('x-list')) : m;
+  for (let k = 0; k < n; k++) {
+    const s = document.createElement('section');
+    const h = document.createElement('h2');
+    h.textContent = 'Sec ' + k;
+    const p = document.createElement('p');
+    p.textContent = 'Body ' + k + ' lorem ipsum dolor sit amet consectetur.';
+    s.append(h, p);
+    holder.appendChild(s);
+  }
+  if (shape === 'plus1') {
+    const c = document.createElement('x-c');
+    const p = document.createElement('p');
+    p.slot = 'comment';
+    p.textContent = 'cookie banner';
+    c.append(p);
+    m.appendChild(c);
+  }
+</script>
+</body>
+</html>

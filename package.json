@@ -1,0 +1,57 @@
+{
+  "name": "motorika",
+  "version": "0.1.0",
+  "description": "Fast, reliable Chrome control for AI agents over MCP: multiple tabs, forms, clicks, video frames, headed or headless.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "chrome",
+    "browser-automation",
+    "ai-agents",
+    "playwright"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "author": "X2 Mobile",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/X2Mobile/motorika-mcp.git"
+  },
+  "homepage": "https://github.com/X2Mobile/motorika-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/X2Mobile/motorika-mcp/issues"
+  },
+  "bin": {
+    "motorika": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --import tsx --test --test-concurrency=2 'test/**/*.test.ts'",
+    "test:unit": "node --import tsx --test 'test/unit/**/*.test.ts'",
+    "smoke:chrome": "node scripts/smoke-chrome.mjs",
+    "bench": "node --import tsx bench/micro.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "playwright-core": "1.64.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/pngjs": "6.0.5",
+    "esbuild": "0.28.2",
+    "ffmpeg-static": "5.3.0",
+    "pngjs": "7.0.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  }
+}

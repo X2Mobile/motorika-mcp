@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Drag cases</title>
+<style>
+  .box { width: 160px; height: 100px; border: 2px dashed #555; display: inline-block; margin: 20px; vertical-align: top; }
+  #src, #handle { width: 100px; height: 50px; background: #9cf; margin: 20px; touch-action: none; user-select: none; }
+  #handle { position: absolute; left: 20px; top: 260px; background: #fc9; }
+  #ptarget { position: absolute; left: 400px; top: 240px; }
+</style>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D7 oracle: window.__events gets 'html5-drop:<data>' and 'pointer-drop'. -->
+<h1>Drag cases</h1>
+<div id="src" draggable="true" role="button" aria-label="Drag source">Drag me</div>
+<div id="dropzone" class="box" role="region" aria-label="Drop zone">Drop here</div>
+<script>
+  const src = document.getElementById('src');
+  const zone = document.getElementById('dropzone');
+  src.addEventListener('dragstart', (e) => e.dataTransfer.setData('text/plain', 'payload-42'));
+  zone.addEventListener('dragover', (e) => e.preventDefault());
+  zone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    __log('html5-drop:' + e.dataTransfer.getData('text/plain'));
+  });
+</script>
+
+<div id="handle" role="button" aria-label="Pointer handle">Pointer</div>
+<div id="ptarget" class="box" role="region" aria-label="Pointer target">Pointer target</div>
+<script>
+  const handle = document.getElementById('handle');
+  const target = document.getElementById('ptarget');
+  let dragging = false;
+  handle.addEventListener('pointerdown', (e) => { dragging = true; handle.setPointerCapture(e.pointerId); __log('pointer-down'); });
+  handle.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    handle.style.left = (e.pageX - 50) + 'px';
+    handle.style.top = (e.pageY - 25) + 'px';
+  });
+  handle.addEventListener('pointerup', (e) => {
+    if (!dragging) return;
+    dragging = false;
+    const r = target.getBoundingClientRect();
+    if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) __log('pointer-drop');
+    else __log('pointer-miss');
+  });
+</script>
+</body>
+</html>

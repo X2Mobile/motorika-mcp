@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Inline hosts</title></head>
+<!-- Fix round 5, item 3 (reviewer's e1b.mjs): a custom element is display:inline unless it sets
+     :host{display:block}; block-level slotted children must stay separate blocks either way. -->
+<body>
+<script>
+  const def = (name, hostCss) => customElements.define(name, class extends HTMLElement {
+    constructor() {
+      super();
+      const r = this.attachShadow({ mode: 'open' });
+      const st = document.createElement('style');
+      st.textContent = hostCss;
+      const head = document.createElement('div');
+      head.textContent = 'Head ' + name;
+      const slot = document.createElement('slot');
+      slot.name = 'comment';
+      r.append(st, head, slot);
+    }
+  });
+  def('x-inl', '');
+  def('x-blk', ':host{display:block}');
+  // Named slots in the reverse of light-DOM order: the composed (rendering) order is B, then A.
+  customElements.define('x-swap', class extends HTMLElement {
+    constructor() {
+      super();
+      const r = this.attachShadow({ mode: 'open' });
+      const h = document.createElement('h2');
+      h.textContent = 'SWAP heading';
+      const b = document.createElement('slot');
+      b.name = 'b';
+      const a = document.createElement('slot');
+      a.name = 'a';
+      r.append(h, b, a);
+    }
+  });
+</script>
+<main>
+  <h1>Hosts</h1>
+  <section id="inl"><x-inl><div slot="comment"><p>INL para one end</p><p>INL para two</p></div></x-inl></section>
+  <section id="blk"><x-blk><div slot="comment"><p>BLK para one end</p><p>BLK para two</p></div></x-blk></section>
+  <section id="plain"><x-plain><p>PLAIN para one end</p><p>PLAIN para two</p></x-plain></section>
+  <section id="kinds"><x-inl><div slot="comment"><h3>KIND heading</h3><ul><li>KIND item</li></ul><div>KIND div</div><p>KIND para</p></div></x-inl></section>
+  <section id="swap"><x-swap><p slot="a">ORDERWORD alpha</p><p slot="b">ORDERWORD bravo</p></x-swap></section>
+  <p id="hidden">Hello <span>world<span style="display:none">HIDDEN-WORD</span> again</span> end</p>
+</main>
+</body>
+</html>

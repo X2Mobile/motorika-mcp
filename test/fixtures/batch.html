@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Batch form</title><script src="/oracle.js"></script></head>
+<body>
+<!-- D14: submitting POSTs JSON {name} to /submit?form=batch, then shows "Batch done: <name>" after 300 ms. -->
+<h1>Batch form</h1>
+<form id="bf" aria-label="Batch form">
+  <label>Batch name <input id="bname" name="bname" type="text"></label>
+  <button type="submit">Batch submit</button>
+</form>
+<p id="done"></p>
+<script>
+  document.getElementById('bf').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('bname').value;
+    fetch('/submit?form=batch', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ name }) });
+    setTimeout(() => { document.getElementById('done').textContent = 'Batch done: ' + name; }, 300);
+  });
+</script>
+</body>
+</html>

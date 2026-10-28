@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Find cases</title>
+<style>iframe { width: 420px; height: 120px; }</style>
+</head>
+<body>
+<!-- C9: buttons whose name contains "save" (case-insensitive): "Save" and "Autosave settings" here,
+     "Save draft" in the same-origin frame, "Save remote" in the cross-origin frame. "Cancel" does not match. -->
+<main>
+  <h1>Find cases</h1>
+  <button type="button">Save</button>
+  <button type="button">Autosave settings</button>
+  <button type="button">Cancel</button>
+  <iframe title="Same frame" src="/frame-same.html"></iframe>
+  <iframe title="Cross frame" src="__ORIGIN_B__/frame-cross.html"></iframe>
+</main>
+</body>
+</html>

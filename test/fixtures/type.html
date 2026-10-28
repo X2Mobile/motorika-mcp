@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Type cases</title>
+<style>#suggestions { list-style: none; padding: 0; border: 1px solid #888; } #suggestions:empty { display: none; }</style>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D2 oracle: input values, window.__keydowns, #suggestions, window.__controlled, /submit?form=search. -->
+<h1>Type cases</h1>
+<label>Replace me <input id="replace" type="text" value="old"></label>
+<label>Append me <input id="append" type="text" value="abc"></label>
+
+<!-- Autocomplete: suggestions only appear when every typed char came with its own keydown. -->
+<label>City <input id="city" type="text" autocomplete="off"></label>
+<ul id="suggestions" role="listbox" aria-label="Suggestions"></ul>
+<script>
+  window.__keydowns = 0;
+  const CITIES = ['Berlin', 'Bern', 'Bergen', 'Boston'];
+  const city = document.getElementById('city');
+  const list = document.getElementById('suggestions');
+  city.addEventListener('keydown', (e) => { if (e.key.length === 1) window.__keydowns += 1; });
+  city.addEventListener('input', () => {
+    list.replaceChildren();
+    const v = city.value;
+    if (v.length < 2 || window.__keydowns < v.length) return;
+    for (const c of CITIES.filter((x) => x.toLowerCase().startsWith(v.toLowerCase()))) {
+      const li = document.createElement('li');
+      li.setAttribute('role', 'option');
+      li.textContent = c;
+      list.append(li);
+    }
+  });
+</script>
+
+<form method="post" action="/submit?form=search" aria-label="Search form">
+  <label>Search query <input id="q" name="q" type="text"></label>
+</form>
+
+<div id="editor" contenteditable="true" role="textbox" aria-label="Editor" style="border:1px solid #888;min-height:2em"></div>
+
+<!-- Controlled input: state comes ONLY from input events; change/blur re-render from state. -->
+<label>Controlled <input id="controlled" type="text"></label>
+<script>
+  window.__controlled = '';
+  const ctl = document.getElementById('controlled');
+  ctl.addEventListener('input', (e) => { window.__controlled = e.target.value; });
+  const render = () => { ctl.value = window.__controlled; };
+  ctl.addEventListener('change', render);
+  ctl.addEventListener('blur', render);
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CSP fixture</title>
+<style>label { display: block; margin: 8px 0; }</style>
+</head>
+<body>
+<!-- C12: served at /csp/csp-page.html with
+     Content-Security-Policy: script-src 'none'; require-trusted-types-for 'script'.
+     Everything here works without script. The inline script below must NOT run (harness proves it). -->
+<script>document.title = 'SCRIPT RAN'; window.__inlineRan = true;</script>
+<main>
+  <h1>Strict CSP page</h1>
+  <p>CSP-PARAGRAPH This page works without any script.</p>
+  <form method="post" action="/submit?form=csp" aria-label="CSP form">
+    <label>CSP name <input name="csp_name" type="text"></label>
+    <button type="submit">CSP submit</button>
+  </form>
+  <p><a href="/nav-a.html">CSP link</a></p>
+</main>
+</body>
+</html>

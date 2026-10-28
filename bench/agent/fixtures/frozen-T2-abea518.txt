@@ -1,0 +1,17 @@
+  T2: {
+    prompt:
+      'Use only the browser tools. Open https://en.wikipedia.org, use the site search to search for "Model Context Protocol", ' +
+      `open the article, and report who introduced it and in which year, as stated in the article. ${JSON_TAIL} ` +
+      'Shape: {"introduced_by": "...", "year": 0}',
+    check(answer, evidence) {
+      const by = String(answer?.introduced_by ?? '');
+      const year = String(answer?.year ?? '');
+      const answerOk = /anthropic/i.test(by) && year.includes('2024');
+      // The article was reached, and the fact came back through the browser: as text, or (for tools that
+      // read pixels) as an image taken there, which this oracle cannot read and labels as such.
+      const reached = /model[_ ]context[_ ]protocol/i.test(evidence.urls.join(' ') + evidence.resultText);
+      const inText = /anthropic/i.test(evidence.resultText);
+      const seen = reached && (inText || evidence.images > 0);
+      const how = !reached ? 'article not reached' : inText ? 'fact seen in tool text' : evidence.images ? 'fact only in a screenshot (not text-verifiable)' : 'fact not in any tool result';
+      return { answerOk, evidenceOk: seen, detail: `introduced_by=${JSON.stringify(by)} year=${JSON.stringify(year)}; ${how}` };
+    },

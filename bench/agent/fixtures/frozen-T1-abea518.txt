@@ -1,0 +1,23 @@
+  T1: {
+    prompt:
+      'Use only the browser tools. Open https://httpbin.org/forms/post and fill in the form: Customer name "<PERSONA>", ' +
+      'Telephone "<PERSONA>", E-mail "h1@example.com", Pizza Size Medium, Pizza Toppings Bacon and Onion, ' +
+      'Preferred delivery time 19:30, Delivery instructions "x2-browser H1 check". Submit the order, then report the ' +
+      `"form" object that httpbin echoes back on the response page, exactly as shown. ${JSON_TAIL} Shape: {"form": {...}}`,
+    check(answer, evidence) {
+      const f = answer?.form ?? {};
+      const top = [].concat(f.topping ?? []);
+      const want = {
+        custname: f.custname === '<PERSONA>',
+        custtel: f.custtel === '<PERSONA>',
+        custemail: f.custemail === 'h1@example.com',
+        size: f.size === 'medium',
+        topping: top.includes('bacon') && top.includes('onion') && top.length === 2,
+        delivery: f.delivery === '19:30',
+        comments: f.comments === 'x2-browser H1 check',
+      };
+      const wrong = Object.keys(want).filter((k) => !want[k]);
+      // Evidence: a browser tool result actually carried the echoed JSON (not recalled or invented).
+      const seen = evidence.resultText.includes('custemail') && evidence.resultText.includes('h1@example.com');
+      return { answerOk: wrong.length === 0, evidenceOk: seen, detail: wrong.length ? `wrong: ${wrong.join(',')}` : 'all 7 fields echoed' };
+    },

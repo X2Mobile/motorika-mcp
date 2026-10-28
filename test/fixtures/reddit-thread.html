@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Hello world post : test</title></head>
+<!-- P1 (real-world feedback): old.reddit.com thread markup, trimmed. The selftext and every comment body
+     sit in form.usertext > div.usertext-body > div.md > p; read must return them, and never a control's value. -->
+<body class="single-page comments-page">
+<div id="header" role="banner"><a href="/" id="header-img">reddit</a><ul class="tabmenu"><li class="selected"><a href="/r/test/">comments</a></li></ul></div>
+<div class="side"><div class="spacer"><form action="/search" id="search" role="search"><input type="text" name="q" placeholder="search" value="side-search-value"></form></div></div>
+<div class="content" role="main">
+  <div class="sitetable linklisting" id="siteTable">
+    <div class="thing id-t3_abc odd link self" data-fullname="t3_abc">
+      <div class="entry unvoted">
+        <div class="top-matter">
+          <p class="title"><a class="title may-blank" href="/r/test/comments/abc/hello_world_post/">Hello world post</a></p>
+          <p class="tagline">submitted <time datetime="2026-10-22T10:00:00+00:00">21 hours ago</time> by <a href="https://old.reddit.com/user/alice" class="author may-blank">alice</a></p>
+        </div>
+        <div class="expando">
+          <form action="#" class="usertext warn-on-unload" onsubmit="return post_form(this, 'editusertext')" id="form-t3_abcxyz">
+            <input type="hidden" name="thing_id" value="t3_abc-HIDDEN-VALUE">
+            <div class="usertext-body may-blank-within md-container"><div class="md"><p>SELFTEXT-BODY: this is the post body people came for.</p></div></div>
+          </form>
+        </div>
+        <ul class="flat-list buttons"><li class="first"><a href="/r/test/comments/abc/hello_world_post/" class="bylink comments may-blank">2 comments</a></li><li class="share"><a href="javascript:void(0)" class="post-sharing-button">share</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="commentarea">
+    <form action="#" class="usertext cloneable warn-on-unload" id="form-t3_abc7ri">
+      <input type="hidden" name="thing_id" value="t3_abc-REPLY-HIDDEN">
+      <div class="usertext-edit md-container"><div class="md"><textarea rows="1" cols="1" name="text">REPLY-DRAFT-VALUE</textarea></div>
+        <div class="bottom-area"><div class="usertext-buttons"><button type="submit" class="save">save</button></div></div></div>
+    </form>
+    <div class="sitetable nestedlisting" id="siteTable_t3_abc">
+      <div class="thing id-t1_c1 noncollapsed comment" data-fullname="t1_c1">
+        <div class="entry unvoted">
+          <p class="tagline"><a href="javascript:void(0)" class="expand">[–]</a><a href="https://old.reddit.com/user/bob" class="author may-blank">bob</a> <span class="score unvoted" title="1">1 point</span> <time datetime="2026-10-22T10:00:00+00:00">21 hours ago</time></p>
+          <form action="#" class="usertext warn-on-unload" id="form-t1_c1q8f">
+            <input type="hidden" name="thing_id" value="t1_c1-HIDDEN-VALUE">
+            <div class="usertext-body may-blank-within md-container"><div class="md"><p>COMMENT-ONE: first comment body.</p><p>Second paragraph of the first comment.</p></div></div>
+          </form>
+          <ul class="flat-list buttons"><li class="first"><a href="/r/test/comments/abc/hello_world_post/c1/" class="bylink" rel="nofollow">permalink</a></li><li class="reply-button"><a class="access-required" href="javascript:void(0)">reply</a></li></ul>
+        </div>
+        <div class="child">
+          <div class="sitetable listing">
+            <div class="thing id-t1_c2 noncollapsed comment" data-fullname="t1_c2">
+              <div class="entry unvoted">
+                <p class="tagline"><a href="javascript:void(0)" class="expand">[–]</a><a href="https://old.reddit.com/user/carol" class="author may-blank">carol</a> <span class="score unvoted">3 points</span></p>
+                <form action="#" class="usertext warn-on-unload" id="form-t1_c2abc"><input type="hidden" name="thing_id" value="t1_c2-HIDDEN-VALUE"><div class="usertext-body may-blank-within md-container"><div class="md"><p>COMMENT-TWO: a nested reply with <a href="https://example.com/x">a link</a>.</p></div></div></form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer-parent"><div class="footer rounded"><a href="/help">help</a></div></div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sign in</title></head>
+<!-- P1: a real login form still reads sensibly (its headings and labels), and no control value is read out. -->
+<body>
+<main>
+  <form action="/submit" method="post" class="login">
+    <h2>Sign in to Example</h2>
+    <p>Use your work account.</p>
+    <label for="email">Email address</label>
+    <input id="email" type="email" name="email" value="ann-EMAIL-VALUE@example.com">
+    <label for="pw">Password</label>
+    <input id="pw" type="password" name="pw" value="PASSWORD-VALUE-x1">
+    <input type="hidden" name="csrf" value="CSRF-HIDDEN-VALUE">
+    <label><input type="checkbox" name="remember" checked> Remember me</label>
+    <select name="lang"><option>SELECT-OPTION-VALUE</option></select>
+    <button type="submit">BUTTON-SUBMIT-TEXT</button>
+    <a href="/forgot">Forgot your password?</a>
+  </form>
+</main>
+</body>
+</html>

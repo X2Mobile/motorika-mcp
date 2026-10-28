@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tracking frames</title></head>
+<!-- P8 (correctness re-check): one on-screen button and two off-screen 1x1 tracking iframes. The attached
+     snapshot must not report anything off-screen: an iframe is not an element. -->
+<body>
+<button type="button">Here</button>
+<iframe src="/nav-b.html" style="position:absolute;left:-9999px;width:1px;height:1px"></iframe>
+<iframe src="/nav-b.html" style="position:absolute;top:-9999px;width:1px;height:1px"></iframe>
+</body>
+</html>

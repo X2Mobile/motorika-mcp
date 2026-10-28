@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Video without metadata</title></head>
+<body>
+<!-- R7 (review-lens decision 7): preload="none" and no autoplay, so Chrome loads no metadata:
+     readyState stays 0 and duration is NaN until something plays it. -->
+<h1>Video without metadata</h1>
+<video id="vn" preload="none" muted width="320" height="180" src="/media/colors.webm"></video>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Viewport rows</title>
+<style>body { margin: 0; height: 4200px; position: relative; } .row { position: absolute; left: 20px; height: 40px; width: 200px; }</style>
+</head>
+<body>
+<!-- C6: 40 buttons "Row 0".."Row 39"; Row i spans page y = i*100+20 .. i*100+60. None straddles y = 800. -->
+<div id="rows"></div>
+<script>
+  const host = document.getElementById('rows');
+  for (let i = 0; i < 40; i++) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'row';
+    b.style.top = (i * 100 + 20) + 'px';
+    b.textContent = 'Row ' + i;
+    host.append(b);
+  }
+</script>
+</body>
+</html>

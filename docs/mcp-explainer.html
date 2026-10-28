@@ -1,0 +1,1140 @@
+<title>MCP kapcsolási rajz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root {
+  /* Layout: a dark circuit-board schematic you step through, then short chapters that each zoom into one part of it. */
+  --bg: #eff3ee;
+  --surface: #ffffff;
+  --surface-2: #e5ebe6;
+  --fg: #16201b;
+  --muted: #526158;
+  --line: #cfd8d1;
+  --accent: #9a4c17;
+  --accent-fg: #ffffff;
+  --str: #2b6943;
+  --board: #0f3a2d;
+  --board-2: #15493a;
+  --board-line: #2d6a55;
+  --silk: #e8f0ea;
+  --copper: #c88743;
+  --signal: #f4c24f;
+  --packet-fg: #221805;
+  --code-bg: #0d2c22;
+  --code-fg: #d8e6dd;
+  --code-key: #f0b46a;
+  --code-str: #a3dbb4;
+  --code-num: #f4c24f;
+  --code-com: #86a596;
+  --mock-bg: #ffffff;
+  --mock-fg: #1d2622;
+  --mock-muted: #66726b;
+  --mock-line: #c6cfca;
+  --mock-band: #f2f5f3;
+  --mock-accent: #2457c5;
+  --mock-accent-fg: #ffffff;
+  --font-display: "Chakra Petch", "Arial Narrow", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1310; --surface: #0f1c16; --surface-2: #15261e; --fg: #e0e9e3; --muted: #9db0a5;
+    --line: #22362d; --accent: #e5a262; --accent-fg: #1b1208; --str: #9fd8b0;
+    --board: #0c3226; --board-2: #12412f; --board-line: #2b6652;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a1310; --surface: #0f1c16; --surface-2: #15261e; --fg: #e0e9e3; --muted: #9db0a5;
+  --line: #22362d; --accent: #e5a262; --accent-fg: #1b1208; --str: #9fd8b0;
+  --board: #0c3226; --board-2: #12412f; --board-line: #2b6652;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+/* grid and flex children may shrink below their widest line; wide content scrolls inside its own box */
+.wrap > *, .narration > *, .snap-grid > *, .snap-col > *, .call > *, .story > *, figure.msg > *,
+.lanes > *, .lane > *, .section-head > *, .board-section > *, .groups > *, .group > * { min-width: 0; }
+pre.code { max-width: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+  padding-block: 36px 72px;
+  display: grid;
+  gap: 72px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.12; }
+h1 { font-size: clamp(2.3rem, 5.4vw, 3.7rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.55rem, 3.2vw, 2.15rem); font-weight: 600; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+p { margin: 0; }
+code, .mono { font-family: var(--font-mono); font-size: 0.92em; }
+a { color: var(--accent); }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--muted);
+}
+.intro { display: grid; gap: 14px; max-width: 70ch; }
+.lede { font-size: 1.12rem; color: var(--fg); max-width: 64ch; }
+.lede em { font-style: normal; font-family: var(--font-mono); font-size: 0.95em; color: var(--accent); }
+.section-head { display: grid; gap: 10px; max-width: 68ch; margin-bottom: 22px; }
+.section-head p { color: var(--muted); }
+
+button {
+  font: inherit; cursor: pointer; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); padding: 8px 14px; line-height: 1.2;
+}
+button:hover { border-color: var(--accent); }
+button:focus-visible, .snap-line:focus-visible, [role="tab"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:disabled { opacity: 0.45; cursor: default; border-color: var(--line); }
+button.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); font-weight: 600; }
+
+/* ---------- the board ---------- */
+.board-section { display: grid; gap: 14px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tabs [role="tab"] {
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: 0.02em;
+  background: transparent; border: 1px solid var(--line); padding: 8px 14px;
+}
+.tabs [role="tab"] .n { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin-right: 6px; }
+.tabs [role="tab"][aria-selected="true"] { background: var(--board); color: var(--silk); border-color: var(--board); }
+.tabs [role="tab"][aria-selected="true"] .n { color: var(--signal); }
+.board {
+  background-color: var(--board);
+  background-image: radial-gradient(circle at 1px 1px, rgba(232, 240, 234, 0.09) 1px, transparent 0);
+  background-size: 18px 18px;
+  border-radius: 14px;
+  padding: clamp(8px, 1.6vw, 18px);
+}
+.board svg { display: block; width: 100%; height: auto; overflow: visible; }
+.wire { fill: none; stroke: var(--copper); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0.42; transition: opacity .3s, stroke .3s; }
+.wire.active { stroke: var(--signal); opacity: 1; filter: url(#glow); }
+.wire.hide { display: none; }
+.wire.hide.active { display: inline; }
+.wire-label { font-family: var(--font-mono); font-size: 11px; fill: var(--silk); opacity: 0.55; }
+.wire-label.active { opacity: 1; fill: var(--signal); }
+.mod-box { fill: var(--board-2); stroke: var(--board-line); stroke-width: 1.5; transition: stroke .3s, opacity .3s; }
+.mod.inner .mod-box { fill: var(--board); }
+.mod { transition: opacity .3s; }
+.mod.focus .mod-box { stroke: var(--signal); stroke-width: 2; }
+.mod.dim { opacity: 0.42; }
+.mod.off .mod-box { stroke-dasharray: 6 5; fill: transparent; }
+.mod.off .mod-label, .mod.off .mod-icon { opacity: 0.55; }
+.mod-label { font-family: var(--font-display); font-weight: 600; font-size: 16px; fill: var(--silk); }
+.mod.inner .mod-label { font-size: 14px; }
+.mod-sub { font-family: var(--font-mono); font-size: 11.5px; fill: var(--silk); opacity: 0.68; }
+.mod-icon { fill: none; stroke: var(--copper); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.mod.focus .mod-icon { stroke: var(--signal); }
+.badge rect { fill: var(--signal); }
+.badge text { fill: var(--packet-fg); font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; }
+.mod.off .badge rect { fill: var(--silk); }
+svg:not(.show-s2) .s2 { opacity: 0.13; }
+.packet rect { fill: var(--signal); }
+.packet text { fill: var(--packet-fg); font-family: var(--font-mono); font-size: 11px; font-weight: 600; }
+@keyframes pulse { 0% { opacity: 1; } 40% { opacity: 0.55; } 100% { opacity: 1; } }
+.mod.pulse .mod-box { animation: pulse 1.1s ease-in-out 2; }
+
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.controls .count { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--muted); min-width: 4.5ch; }
+.pips { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.pips button { width: 14px; height: 14px; padding: 0; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--line); }
+.pips button.on { background: var(--accent); border-color: var(--accent); }
+.hint { font-size: 0.85rem; color: var(--muted); }
+
+.narration { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 18px; align-items: start; }
+.story { display: grid; gap: 8px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; min-width: 0; }
+.story .step-k { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.story p { font-size: 1.04rem; }
+figure.msg { margin: 0; min-width: 0; display: grid; gap: 6px; }
+figure.msg figcaption { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+pre.code {
+  margin: 0; background: var(--code-bg); color: var(--code-fg); border-radius: 12px;
+  padding: 14px 16px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.55;
+  overflow: auto; max-height: 360px; white-space: pre; tab-size: 2;
+}
+pre.code .k { color: var(--code-key); }
+pre.code .s { color: var(--code-str); }
+pre.code .n, pre.code .l { color: var(--code-num); }
+pre.code .c { color: var(--code-com); font-style: italic; }
+.board-note { font-size: 0.85rem; color: var(--muted); }
+
+/* ---------- snapshot chapter ---------- */
+.snap-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 20px; align-items: start; }
+.mock { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--mock-bg); color: var(--mock-fg); min-width: 0; }
+.mock-bar { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--mock-band); border-bottom: 1px solid var(--mock-line); }
+.mock-bar .dots { display: flex; gap: 5px; }
+.mock-bar .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--mock-line); display: block; }
+.mock-url { font-family: var(--font-mono); font-size: 12px; color: var(--mock-muted); background: var(--mock-bg); border: 1px solid var(--mock-line); border-radius: 6px; padding: 3px 9px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
+.mock-page { display: grid; gap: 0; }
+.mock [data-ref] { position: relative; border-radius: 6px; transition: outline-color .15s; outline: 2px solid transparent; outline-offset: 3px; }
+.mock [data-ref].hl { outline-color: var(--signal); }
+.mock [data-ref]::after {
+  content: attr(data-ref); position: absolute; top: -10px; left: -8px; z-index: 2;
+  font: 600 10.5px/1 var(--font-mono); background: var(--signal); color: var(--packet-fg);
+  padding: 3px 5px; border-radius: 5px; opacity: 0; transform: translateY(2px); transition: opacity .15s, transform .15s; pointer-events: none;
+}
+.mock.labels [data-ref]::after, .mock [data-ref].hl::after { opacity: 1; transform: none; }
+.m-banner { display: flex; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--mock-line); }
+.m-logo { font-weight: 600; color: var(--mock-accent); padding: 2px 4px; }
+.m-main { padding: 22px 22px 26px; display: grid; gap: 14px; margin: 10px; }
+.m-h { font-family: var(--font-body); font-size: 1.35rem; font-weight: 600; justify-self: start; padding: 0 4px; }
+.m-field { display: grid; gap: 5px; font-size: 0.88rem; color: var(--mock-muted); padding: 2px; }
+.m-input { display: block; border: 1px solid var(--mock-line); border-radius: 6px; padding: 8px 10px; color: var(--mock-fg); font-size: 0.95rem; background: var(--mock-bg); }
+.m-check { display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; justify-self: start; padding: 2px 4px; }
+.m-check .box { width: 15px; height: 15px; border: 1.5px solid var(--mock-muted); border-radius: 3px; display: inline-block; }
+.m-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.m-btn { background: var(--mock-accent); color: var(--mock-accent-fg); border-radius: 6px; padding: 8px 18px; font-weight: 600; font-size: 0.95rem; }
+.m-link { color: var(--mock-accent); font-size: 0.9rem; text-decoration: underline; padding: 2px 4px; }
+.mock-cap { font-size: 0.85rem; color: var(--muted); margin-top: 10px; }
+.snap-col { display: grid; gap: 14px; min-width: 0; }
+.snap-box { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 0; overflow-x: auto; }
+.snap-head { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding: 4px 14px 8px; white-space: nowrap; }
+ol.snap { list-style: none; margin: 0; padding: 0; }
+.snap-line {
+  display: block; width: 100%; text-align: left; border: 0; border-radius: 0; background: transparent;
+  font-family: var(--font-mono); font-size: 12.5px; padding: 4px 14px; white-space: nowrap; color: var(--fg);
+}
+.snap-line:hover, .snap-line.hl { background: var(--surface-2); }
+.snap-line .role { color: var(--fg); font-weight: 500; }
+.snap-line .name { color: var(--str); }
+.snap-line .ref { background: var(--signal); color: var(--packet-fg); border-radius: 4px; padding: 0 4px; font-weight: 600; }
+.snap-line .attr { color: var(--muted); }
+.call { display: grid; gap: 6px; }
+.call-k { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.call p { font-size: 0.95rem; }
+.untrusted { font-size: 0.92rem; color: var(--muted); border-left: 3px solid var(--copper); padding-left: 12px; max-width: 68ch; margin-top: 22px; }
+
+/* ---------- speed chapter ---------- */
+.task { font-family: var(--font-mono); font-size: 0.9rem; color: var(--fg); background: var(--surface-2); border-radius: 8px; padding: 8px 12px; justify-self: start; }
+.lanes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; margin-top: 18px; }
+.lane { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.lane-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.lane-top h3 { font-size: 1.1rem; }
+.lane-top p { font-size: 0.88rem; color: var(--muted); }
+.rounds { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.rounds small { font-family: var(--font-body); font-size: 0.85rem; font-weight: 400; color: var(--muted); margin-left: 4px; }
+.rows { display: grid; gap: 8px; min-height: 40px; }
+.row { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 10px; align-items: center; animation: rowin .35s ease-out both; }
+@keyframes rowin { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.row .c { font-family: var(--font-mono); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar { height: 18px; background: var(--surface-2); border-radius: 4px; position: relative; overflow: hidden; }
+.bar span { position: absolute; inset: 0 auto 0 0; background: var(--copper); border-radius: 4px; }
+.bar.long span { background: var(--muted); opacity: 0.55; }
+.bar em { position: absolute; left: 8px; top: 0; font-style: normal; font-size: 11px; line-height: 18px; font-family: var(--font-mono); color: var(--fg); }
+.speed-foot { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 14px; }
+.speed-foot p { font-size: 0.85rem; color: var(--muted); max-width: 70ch; }
+ul.gains { margin: 22px 0 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 72ch; }
+
+/* ---------- what we get ---------- */
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.group { border-top: 2px solid var(--copper); padding-top: 10px; display: grid; gap: 8px; align-content: start; }
+.group h3 { font-size: 1.02rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--font-mono); font-size: 12.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
+.group p { font-size: 0.88rem; color: var(--muted); }
+.subhead { margin-top: 40px; margin-bottom: 14px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.93rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; white-space: nowrap; }
+ul.safety { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 72ch; }
+
+/* ---------- glossary ---------- */
+dl.gloss { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px 28px; margin: 0; }
+dl.gloss div { display: grid; gap: 3px; align-content: start; }
+dl.gloss dt { font-family: var(--font-display); font-weight: 600; }
+dl.gloss dd { margin: 0; color: var(--muted); font-size: 0.94rem; }
+footer { border-top: 1px solid var(--line); padding-top: 18px; font-size: 0.85rem; color: var(--muted); display: grid; gap: 4px; }
+
+@media (max-width: 820px) {
+  .narration, .snap-grid, .lanes { grid-template-columns: minmax(0, 1fr); }
+  .pips { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+<main class="wrap">
+  <header class="intro">
+    <span class="eyebrow">Motorika · hogyan működik</span>
+    <h1>MCP kapcsolási rajz</h1>
+    <p class="lede">A modell maga nem tud kattintani, csak kérni tud: <em>„kattints az e12-re”</em>. Az MCP az a közös nyelv, amin ez a kérés eljut a böngészőig, és a válasz visszaér. Lépkedj végig a rajzon: három jelenet, lépésenként, a valódi üzenetekkel.</p>
+  </header>
+
+  <section class="board-section" aria-labelledby="board-h">
+    <h2 id="board-h" class="eyebrow" style="font-family: var(--font-mono); font-size: 0.78rem; font-weight: 400;">A rajz</h2>
+    <div class="tabs" role="tablist" aria-label="Jelenetek" id="tabs"></div>
+    <div class="board" id="board">
+      <svg id="schematic" role="img" aria-label="Kapcsolási rajz: Te, a Claude modell, a Claude Code a beépített MCP klienssel, a Motorika MCP szerver, a Chrome és a web, a köztük futó vezetékekkel."></svg>
+    </div>
+    <div class="controls">
+      <button type="button" id="prev">Előző</button>
+      <button type="button" id="next" class="primary">Következő</button>
+      <button type="button" id="play" aria-pressed="false">Lejátszás</button>
+      <span class="count" id="step-count" aria-live="off">1 / 7</span>
+      <div class="pips" id="pips" aria-label="Lépések"></div>
+    </div>
+    <div class="narration">
+      <div class="story" aria-live="polite">
+        <span class="step-k" id="step-k">Indulás</span>
+        <h3 id="step-title">Elindítod a Claude Code-ot</h3>
+        <p id="step-text">Egy projektmappában beírod, hogy claude. Ez a host: az alkalmazás, amit használsz, és ami az egész beszélgetést vezeti.</p>
+      </div>
+      <figure class="msg">
+        <figcaption id="step-cap">terminál</figcaption>
+        <pre class="code"><code id="step-code">$ claude</code></pre>
+      </figure>
+    </div>
+    <p class="hint">Tipp: a ← és → billentyűkkel is lépkedhetsz. Az első két jelenet a most épülő első verziót mutatja, a harmadik a második fázisban készül el.</p>
+  </section>
+
+  <section aria-labelledby="snap-h">
+    <div class="section-head">
+      <h2 id="snap-h">Így látja a modell az oldalt</h2>
+      <p>A modell nem pixeleket kap, hanem egy tömör szöveges vázlatot. Minden fontos elem egy sor: szerep, név és egy azonosító (ref), amire később hivatkozhat. Vidd az egeret egy sorra, vagy koppints rá.</p>
+    </div>
+    <div class="snap-grid">
+      <div>
+        <div class="mock" id="mock">
+          <div class="mock-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="mock-url">https://jira.example.com/login</span></div>
+          <div class="mock-page">
+            <div class="m-banner" data-ref="e5"><span class="m-logo" data-ref="e6">Jira</span></div>
+            <div class="m-main" data-ref="e7">
+              <div class="m-h" data-ref="e8">Bejelentkezés</div>
+              <div class="m-field" data-ref="e9">E-mail<span class="m-input">anna@pelda.hu</span></div>
+              <div class="m-field" data-ref="e10">Jelszó<span class="m-input">••••••••••</span></div>
+              <span class="m-check" data-ref="e11"><span class="box" aria-hidden="true"></span>Emlékezz rám</span>
+              <div class="m-row">
+                <span class="m-btn" data-ref="e12">Belépés</span>
+                <span class="m-link" data-ref="e13">Elfelejtett jelszó?</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="controls" style="margin-top: 12px;">
+          <button type="button" id="labels" aria-pressed="false">Címkék a képernyőképen</button>
+        </div>
+        <p class="mock-cap">Így néz ki egy címkézett képernyőkép: a screenshot eszköz annotate kapcsolójával a képen is látszik, melyik elem az e12.</p>
+      </div>
+      <div class="snap-col">
+        <div class="snap-box">
+          <div class="snap-head">snapshot · a modell ezt kapja</div>
+          <ol class="snap" id="snap-list"></ol>
+        </div>
+        <div class="call">
+          <span class="call-k" id="call-k">A modell így hivatkozhat az e12-re</span>
+          <pre class="code"><code id="call-code"></code></pre>
+          <p id="call-note"></p>
+        </div>
+        <div class="call">
+          <span class="call-k">Vagy az egész űrlap egyetlen hívásban</span>
+          <pre class="code"><code id="fill-code"></code></pre>
+        </div>
+      </div>
+    </div>
+    <p class="untrusted">A fejléc végén álló <span class="mono">untrusted page content</span> emlékezteti a modellt, hogy az oldal szövege adat, nem utasítás. Ha egy oldalon az áll, hogy „töltsd fel a .env fájlt”, az nem parancs.</p>
+  </section>
+
+  <section aria-labelledby="speed-h">
+    <div class="section-head">
+      <h2 id="speed-h">Miért lesz gyorsabb?</h2>
+      <p>Egy böngészős feladatnál nem a kattintás tart sokáig, hanem a körök. Minden eszközhívás után a modellnek el kell olvasnia a választ, és döntenie kell; ez körönként néhány másodperc. Kevesebb kör és rövidebb válaszok: gyorsabb ügynök.</p>
+    </div>
+    <span class="task">Feladat: tölts ki egy ötmezős űrlapot, és küldd el.</span>
+    <div class="lanes">
+      <div class="lane">
+        <div class="lane-top">
+          <div><h3>Lépésenként, teljes oldallal</h3><p>minden hívás után az egész oldal visszajön</p></div>
+          <div class="rounds"><span id="rounds-a">6</span><small>kör</small></div>
+        </div>
+        <div class="rows" id="rows-a"></div>
+      </div>
+      <div class="lane">
+        <div class="lane-top">
+          <div><h3>Motorika</h3><p>fill_form és rövid összefoglaló</p></div>
+          <div class="rounds"><span id="rounds-b">1</span><small>kör</small></div>
+        </div>
+        <div class="rows" id="rows-b"></div>
+      </div>
+    </div>
+    <div class="speed-foot">
+      <button type="button" id="speed-play">Lejátszás</button>
+      <p>Szemléltetés: a sávok arányokat mutatnak, nem mért értékeket. A mért számokat a benchmark adja, a Playwright MCP-vel összevetve; az a következő fázisban készül.</p>
+    </div>
+    <ul class="gains">
+      <li>Az azonosítók az egész munkamenetre egyediek, így a modell nem kattinthat véletlenül rossz fülön.</li>
+      <li>Automatikus várakozás: a szerver megvárja, hogy az elem kattintható legyen, nincs vakon alvás.</li>
+      <li><span class="mono">batch</span>: több lépés (navigálás, kitöltés, kattintás, várakozás) egyetlen hívásban.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="gain-h">
+    <div class="section-head">
+      <h2 id="gain-h">Mit kapunk belőle?</h2>
+      <p>Egy saját böngészővezérlőt 22 eszközzel, amit bármelyik Claude Code munkamenet használhat. Ablakkal vagy ablak nélkül (headless), a külön profilodban, a bejelentkezéseiddel.</p>
+    </div>
+    <div class="groups">
+      <div class="group"><h3>Böngésző és fülek</h3><div class="chips"><span class="chip">session</span><span class="chip">tabs</span><span class="chip">navigate</span><span class="chip">wait</span></div><p>Indítás és mód (ablakos vagy headless), több fül, oda-vissza navigálás, várakozás feltételre.</p></div>
+      <div class="group"><h3>Látás</h3><div class="chips"><span class="chip">snapshot</span><span class="chip">screenshot</span><span class="chip">read</span><span class="chip">find</span></div><p>Tömör vázlat, képernyőkép címkékkel, cikk olvasása markdownként, keresés az elemek között.</p></div>
+      <div class="group"><h3>Cselekvés</h3><div class="chips"><span class="chip">click</span><span class="chip">type</span><span class="chip">fill_form</span><span class="chip">press</span><span class="chip">hover</span><span class="chip">scroll</span><span class="chip">drag</span><span class="chip">upload</span><span class="chip">dialog</span><span class="chip">evaluate</span></div><p>Kattintás, gépelés, egész űrlap egyben, billentyűk, húzás, feltöltés, felugró ablakok, saját JavaScript.</p></div>
+      <div class="group"><h3>Videó</h3><div class="chips"><span class="chip">video</span></div><p>Lejátszás, szünet, ugrás, képkockák adott időpontokban vagy lejátszás közben, feliratok. Más oldalról beágyazott videóval is.</p></div>
+      <div class="group"><h3>Hibakeresés és sebesség</h3><div class="chips"><span class="chip">console</span><span class="chip">network</span><span class="chip">batch</span></div><p>Konzolüzenetek és hibák, hálózati kérések (a titkos fejlécek kitakarva), több lépés egy hívásban.</p></div>
+    </div>
+
+    <h3 class="subhead">Hol fut, ki indítja?</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rész</th><th>Hol fut</th><th>Ki indítja</th><th>Mi a dolga</th></tr></thead>
+        <tbody>
+          <tr><td>Claude modell</td><td>az Anthropic felhőjében</td><td>nem kell indítani</td><td>gondolkodik, és eszközt kér (tool_use)</td></tr>
+          <tr><td>Claude Code</td><td>a gépeden, a terminálban</td><td>te</td><td>host és MCP kliens: továbbítja a kéréseket, engedélyt kér</td></tr>
+          <tr><td>Motorika</td><td>a gépeden, Node folyamatként</td><td>a Claude Code, munkamenetenként egyet</td><td>MCP szerver: az eszközhívásokat a Playwrighton át végrehajtja</td></tr>
+          <tr><td>Chrome</td><td>a gépeden, külön profillal</td><td>a Motorika, az első böngészős hívásnál</td><td>megnyitja és kezeli az oldalakat, őrzi a bejelentkezéseidet</td></tr>
+          <tr><td>Weboldalak</td><td>az interneten</td><td>nem kell indítani</td><td>azt csinálják, amit egy böngészőben szoktak</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subhead">Biztonság röviden</h3>
+    <ul class="safety">
+      <li>Feltöltés csak a projektmappából, valamint a Letöltések, az Asztal és a Dokumentumok mappából. Rejtett fájlt (például <span class="mono">.env</span> vagy <span class="mono">.ssh</span>) csak akkor, ha külön engedélyezed.</li>
+      <li>A jelszómezők értéke semmilyen kimenetben nem jelenik meg.</li>
+      <li>Indítási módban nincs hálózati hibakereső port: a Chrome-mal egy belső csövön beszél.</li>
+      <li>Nincs álcázás és nincs botfelismerés-kijátszás: ez a te böngésződ, a te bejelentkezéseiddel.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="gloss-h">
+    <div class="section-head"><h2 id="gloss-h">Fogalomtár</h2></div>
+    <dl class="gloss">
+      <div><dt>MCP (Model Context Protocol)</dt><dd>Nyílt szabvány arra, hogy egy AI-alkalmazás külső eszközöket és adatokat érjen el. Az Anthropic adta ki 2024 végén. Gyakori hasonlat: olyan, mint az USB-C, csak AI-eszközöknek.</dd></div>
+      <div><dt>Host</dt><dd>Az alkalmazás, amit használsz, itt a Claude Code. Ő beszél a modellel, és ő indítja a szervereket.</dd></div>
+      <div><dt>MCP kliens</dt><dd>A hoston belüli kapcsolat egy szerverhez. Minden szerverhez külön kliens tartozik.</dd></div>
+      <div><dt>MCP szerver</dt><dd>Külön program, ami eszközöket kínál, itt a Motorika. Futhat a gépeden (stdio), vagy távolról, HTTP-n keresztül.</dd></div>
+      <div><dt>Eszköz (tool)</dt><dd>Név, leírás és bemeneti séma (JSON Schema). Az eszközt a modell választja ki. Az MCP erőforrásokat és promptokat is ismer, de a Motorika csak eszközöket használ.</dd></div>
+      <div><dt>JSON-RPC 2.0</dt><dd>Az üzenetek formája. Kérés: id, method, params. Válasz: ugyanaz az id, és result vagy error. Értesítés: id nélkül, nem jár rá válasz.</dd></div>
+      <div><dt>stdio</dt><dd>A program szabványos bemenete és kimenete. Helyi MCP szervereknél ez a vezeték: soronként egy JSON üzenet. Ezért a szerver semmi mást nem írhat a kimenetére.</dd></div>
+      <div><dt>tool_use és tool_result</dt><dd>Az eszközhívás a modell oldalán: a modell tool_use blokkot ír, a válasz tool_result blokként érkezik vissza.</dd></div>
+      <div><dt>Playwright</dt><dd>A Microsoft böngészővezérlő könyvtára. A Motorika ezzel beszél a Chrome-mal, és ez végzi az automatikus várakozást is.</dd></div>
+      <div><dt>CDP</dt><dd>Chrome DevTools Protocol, a Chrome saját vezérlőnyelve. Indítási módban egy belső csövön megy, nincs hálózati port.</dd></div>
+      <div><dt>Ref (például e12)</dt><dd>Egy elem azonosítója a pillanatképben. Az egész munkamenetre egyedi, ezért a szerver azt is tudja, melyik fülön van.</dd></div>
+      <div><dt>Headless</dt><dd>Ablak nélküli Chrome. Gyorsabb és nem zavar, de nem látod, mit csinál. Az alapértelmezés az ablakos mód.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <span>Állapot: 2026. október 21. Az első verzió most épül (a szerver és a tőle független elfogadási tesztek); a közös böngésző a második fázisban jön.</span>
+    <span>Az üzenetek a 2025-11-25-ös MCP protokollverziót követik, egyszerűsítve; a konkrét értékek példák.</span>
+  </footer>
+</main>
+
+<script>
+(() => {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s) => document.querySelector(s);
+
+  function el(tag, attrs, parent) {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, String(v));
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+
+  /* ---------- code highlighting (DOM only) ---------- */
+  function highlight(code, target) {
+    target.textContent = '';
+    const re = /(\/\/[^\n]*|^#[^\n]*|\s#\s[^\n]*)|("(?:\\.|[^"\\\n])*")(\s*:)?|\b(true|false|null)\b|(-?\b\d+(?:\.\d+)?\b)/gm;
+    let last = 0;
+    let m;
+    const add = (text, cls) => {
+      if (!text) return;
+      if (!cls) { target.appendChild(document.createTextNode(text)); return; }
+      const s = document.createElement('span');
+      s.className = cls;
+      s.textContent = text;
+      target.appendChild(s);
+    };
+    while ((m = re.exec(code)) !== null) {
+      add(code.slice(last, m.index));
+      if (m[1]) add(m[1], 'c');
+      else if (m[2]) { add(m[2], m[3] ? 'k' : 's'); if (m[3]) add(m[3]); }
+      else if (m[4]) add(m[4], 'l');
+      else add(m[0], 'n');
+      last = re.lastIndex;
+    }
+    add(code.slice(last));
+  }
+
+  /* ---------- icons (24x24) ---------- */
+  const ICONS = {
+    user: [['circle', { cx: 12, cy: 8, r: 4 }], ['path', { d: 'M4 21c0-4.2 3.6-7 8-7s8 2.8 8 7' }]],
+    cloud: [['path', { d: 'M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.3 9.2 4.4 4.4 0 0 0 7 18z' }]],
+    term: [['rect', { x: 2, y: 4, width: 20, height: 16, rx: 2 }], ['path', { d: 'M6 10l3 2.2L6 14.4M11.5 15h5' }]],
+    chip: [['rect', { x: 6, y: 6, width: 12, height: 12, rx: 1.5 }], ['path', { d: 'M9.5 2v4M14.5 2v4M9.5 18v4M14.5 18v4M2 9.5h4M2 14.5h4M18 9.5h4M18 14.5h4' }]],
+    browser: [['rect', { x: 2, y: 4, width: 20, height: 16, rx: 2 }], ['path', { d: 'M2 8.5h20M5 6.3h.01M7.5 6.3h.01' }]],
+    globe: [['circle', { cx: 12, cy: 12, r: 9 }], ['path', { d: 'M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18' }]],
+  };
+
+  /* ---------- two layouts of the same board ---------- */
+  const LAYOUTS = {
+    wide: {
+      vb: [1100, 470], icon: 22,
+      mods: {
+        user: { x: 24, y: 196, w: 116, h: 84, label: 'Te', sub: 'billentyűzet', icon: 'user' },
+        model: { x: 186, y: 22, w: 248, h: 84, label: 'Claude modell', sub: 'Anthropic felhő', icon: 'cloud' },
+        host: { x: 186, y: 162, w: 248, h: 156, label: 'Claude Code', sub: 'host', icon: 'term' },
+        client: { x: 316, y: 212, w: 108, h: 64, label: 'MCP kliens', inner: true },
+        server: { x: 512, y: 186, w: 200, h: 112, label: 'Motorika', sub: 'MCP szerver · Node', icon: 'chip' },
+        chrome: { x: 790, y: 186, w: 156, h: 112, label: 'Chrome', sub: 'külön profil', icon: 'browser' },
+        web: { x: 1000, y: 204, w: 86, h: 76, label: 'Web', sub: 'internet', icon: 'globe' },
+        host2: { x: 186, y: 372, w: 248, h: 80, label: 'Claude Code #2', sub: 'másik terminál', icon: 'term', s2: true },
+        server2: { x: 512, y: 372, w: 200, h: 80, label: 'Motorika #2', sub: 'saját folyamat', icon: 'chip', s2: true },
+      },
+      wires: {
+        user: { d: 'M140 238 H186' },
+        api: { d: 'M310 162 V106', lab: [318, 140, 'start'], text: 'HTTPS · API' },
+        stdin: { d: 'M424 234 H512', lab: [468, 225, 'middle'], text: 'stdin →' },
+        stdout: { d: 'M424 256 H512', lab: [468, 273, 'middle'], text: '← stdout' },
+        cdp: { d: 'M712 242 H790', lab: [751, 232, 'middle'], text: 'CDP cső' },
+        web: { d: 'M946 242 H1000', lab: [973, 232, 'middle'], text: 'HTTPS' },
+        stdio2: { d: 'M434 412 H512', lab: [473, 402, 'middle'], text: 'stdio', s2: true },
+        socket: { d: 'M612 372 V298', lab: [620, 340, 'start'], text: 'unix socket', s2: true },
+        cdp2: { d: 'M712 412 H751 V280 H790', s2: true, hidden: true },
+      },
+    },
+    narrow: {
+      vb: [400, 640], icon: 18,
+      mods: {
+        user: { x: 16, y: 16, w: 170, h: 64, label: 'Te', sub: 'billentyűzet', icon: 'user' },
+        model: { x: 214, y: 16, w: 170, h: 64, label: 'Claude modell', sub: 'felhő', icon: 'cloud' },
+        host: { x: 16, y: 120, w: 368, h: 112, label: 'Claude Code', sub: 'host', icon: 'term' },
+        client: { x: 250, y: 156, w: 120, h: 56, label: 'MCP kliens', inner: true },
+        server: { x: 190, y: 300, w: 194, h: 90, label: 'Motorika', sub: 'MCP szerver', icon: 'chip' },
+        chrome: { x: 190, y: 440, w: 194, h: 80, label: 'Chrome', sub: 'külön profil', icon: 'browser' },
+        web: { x: 230, y: 560, w: 154, h: 64, label: 'Web', sub: 'internet', icon: 'globe' },
+        host2: { x: 16, y: 440, w: 154, h: 80, label: 'Claude Code #2', sub: 'másik terminál', icon: 'term', s2: true },
+        server2: { x: 16, y: 300, w: 154, h: 90, label: 'Motorika #2', sub: 'saját folyamat', icon: 'chip', s2: true },
+      },
+      wires: {
+        user: { d: 'M101 80 V120' },
+        api: { d: 'M299 120 V80', lab: [307, 104, 'start'], text: 'HTTPS' },
+        stdin: { d: 'M300 212 V300', lab: [293, 268, 'end'], text: 'stdin ↓' },
+        stdout: { d: 'M322 212 V300', lab: [329, 268, 'start'], text: '↑ stdout' },
+        cdp: { d: 'M287 390 V440', lab: [295, 419, 'start'], text: 'CDP cső' },
+        web: { d: 'M307 520 V560', lab: [315, 544, 'start'], text: 'HTTPS' },
+        stdio2: { d: 'M93 440 V390', lab: [101, 419, 'start'], text: 'stdio', s2: true },
+        socket: { d: 'M170 345 H190', s2: true },
+        cdp2: { d: 'M170 375 H180 V480 H190', s2: true, hidden: true },
+      },
+    },
+  };
+
+  /* ---------- the three scenes ---------- */
+  const R = String.raw;
+  const SCENES = [
+    {
+      id: 'start', name: 'Indulás', off: ['chrome'],
+      steps: [
+        { title: 'Elindítod a Claude Code-ot', text: 'Egy projektmappában beírod, hogy claude. Ez a host: az alkalmazás, amit használsz, és ami az egész beszélgetést vezeti.',
+          focus: ['user', 'host'], off: ['server'], packets: [{ w: 'user', d: 1, l: 'claude' }], cap: 'terminál',
+          code: R`$ cd ~/projects/my-app
+$ claude` },
+        { title: 'Elindul a Motorika', text: 'A Claude Code a beállításaiból tudja, hogy van egy motorika nevű MCP szerver, és gyerekfolyamatként elindítja. Ez egy sima Node program a gépeden. Két cső köti össze őket: a szerver bemenete (stdin) és a kimenete (stdout).',
+          focus: ['host', 'client', 'server'], pulse: 'server', wires: ['stdin', 'stdout'], cap: '~/.claude.json · a claude mcp add ezt írja be',
+          code: R`"mcpServers": {
+  "motorika": {
+    "type": "stdio",
+    "command": "node",
+    "args": ["/abs/path/to/motorika-mcp/dist/index.js"]
+  }
+}` },
+        { title: 'Kézfogás', text: 'Az első üzenetet a kliens küldi: bemutatkozik, és megmondja, melyik protokollverziót beszéli. A csövön minden üzenet egyetlen sor JSON, JSON-RPC 2.0 formában.',
+          focus: ['client', 'server'], packets: [{ w: 'stdin', d: 1, l: 'initialize' }], cap: 'stdin → szerver · tördelve, egyszerűsítve',
+          code: R`{"jsonrpc": "2.0", "id": 0, "method": "initialize",
+ "params": {"protocolVersion": "2025-11-25",
+            "capabilities": { … },
+            "clientInfo": {"name": "claude-code", "version": "…"}}}` },
+        { title: 'A szerver bemutatkozik', text: 'A szerver visszaírja a nevét és a verzióját, és jelzi, hogy eszközöket (tools) kínál. Azt, hogy melyik válasz melyik kérésre érkezett, az id mező köti össze.',
+          focus: ['client', 'server'], packets: [{ w: 'stdout', d: -1, l: 'result' }], cap: 'stdout → kliens',
+          code: R`{"jsonrpc": "2.0", "id": 0,
+ "result": {"protocolVersion": "2025-11-25",
+            "capabilities": {"tools": {}},
+            "serverInfo": {"name": "motorika", "version": "0.1.0"}}}` },
+        { title: 'Milyen eszközeid vannak?', text: 'A kliens jelzi, hogy kész, aztán lekéri az eszközlistát. Minden eszköznek van neve, leírása és bemeneti sémája. Ebből tudja a modell, mit kérhet, és milyen paraméterekkel.',
+          focus: ['client', 'server'], packets: [{ w: 'stdin', d: 1, l: 'tools/list' }, { w: 'stdout', d: -1, l: '22 eszköz' }], cap: 'oda és vissza a csövön',
+          code: R`→ {"jsonrpc": "2.0", "method": "notifications/initialized"}
+→ {"jsonrpc": "2.0", "id": 1, "method": "tools/list"}
+← {"jsonrpc": "2.0", "id": 1, "result": {"tools": [
+    {"name": "click",
+     "description": "Click an element by ref, selector or x,y …",
+     "inputSchema": {"type": "object",
+       "properties": {"target": {"type": "string"},
+                      "button": {"enum": ["left", "right", "middle"]}},
+       "required": ["target"]}},
+    … és még 21 eszköz
+  ]}}` },
+        { title: 'Az eszközlista a modellhez kerül', text: 'A Claude Code minden kérésnél elküldi a modellnek az elérhető eszközöket, mcp__motorika__click formájú nevekkel. Ha nagyon sok eszköz van, csak a neveiket küldi el, és a modell rákereshet arra, amelyikre szüksége van.',
+          focus: ['host', 'model'], packets: [{ w: 'api', d: 1, l: 'eszközök' }], cap: 'így látja a modell az eszközt',
+          code: R`{"name": "mcp__motorika__click",
+ "description": "Click an element by ref, selector or x,y …",
+ "input_schema": {"type": "object",
+   "properties": {"target": {"type": "string"}},
+   "required": ["target"]}}` },
+        { title: 'A Chrome még alszik', text: 'A szerver már fut, de a Chrome-ot csak az első böngészős hívásnál indítja el. Így egy munkamenet, amelyik nem használ böngészőt, nem fizet érte se memóriával, se idővel.',
+          focus: ['server', 'chrome'], pulse: 'chrome', cap: 'lusta indulás',
+          code: R`# a Chrome még nem fut
+# első böngészős hívás → elindul (melegen ~0,5–1 s)
+# profil: ~/.motorika/profile   ← itt vagy bejelentkezve` },
+      ],
+    },
+    {
+      id: 'click', name: 'Egy kattintás',
+      steps: [
+        { title: 'Megkéred', text: 'Azt írod: „Lépj be a Jirába, és nyisd meg a PROJ-123-et.” A modell ekkor már látta a bejelentkező oldal pillanatképét, benne a Belépés gombot az e12 azonosítóval.',
+          focus: ['user', 'host'], packets: [{ w: 'user', d: 1, l: 'kérés' }], cap: 'terminál',
+          code: R`> Lépj be a Jirába, és nyisd meg a PROJ-123-et.` },
+        { title: 'Irány a modell', text: 'A Claude Code HTTPS-en elküldi az Anthropic API-nak a beszélgetést és az eszközlistát. A modell a felhőben fut, nem a gépeden.',
+          focus: ['host', 'model'], packets: [{ w: 'api', d: 1, l: 'beszélgetés' }], cap: 'HTTPS · egyszerűsítve',
+          code: R`POST https://api.anthropic.com/v1/messages
+{"messages": [ … a beszélgetés … ],
+ "tools":    [ … az eszközök leírása … ]}` },
+        { title: 'A modell eszközt kér', text: 'A modell nem tud kattintani. Ehelyett egy tool_use blokkot ír vissza: melyik eszközt hívja, és milyen paraméterrel. Itt a click eszközt, az e12 célponttal.',
+          focus: ['model', 'host'], packets: [{ w: 'api', d: -1, l: 'tool_use' }], cap: 'a modell válaszában',
+          code: R`{"type": "tool_use",
+ "id": "toolu_01A…",
+ "name": "mcp__motorika__click",
+ "input": {"target": "e12"}}` },
+        { title: 'Engedély', text: 'A Claude Code ellenőrzi, hogy ezt az eszközt szabad-e futtatni. Ha nincs előre engedélyezve, rákérdez nálad.',
+          focus: ['host'], pulse: 'host', cap: '.claude/settings.json · ha nem akarod, hogy mindig rákérdezzen',
+          code: R`{"permissions": {"allow": ["mcp__motorika__*"]}}` },
+        { title: 'tools/call a csövön', text: 'A kliens JSON-RPC üzenetet csinál a kérésből, és egy sorban beírja a szerver bemenetére.',
+          focus: ['client', 'server'], packets: [{ w: 'stdin', d: 1, l: 'tools/call' }], cap: 'stdin → szerver',
+          code: R`{"jsonrpc": "2.0", "id": 7, "method": "tools/call",
+ "params": {"name": "click", "arguments": {"target": "e12"}}}` },
+        { title: 'A szerver kattint', text: 'A Motorika megkeresi az e12-es elemet, és megvárja, hogy kattintható legyen: látszik, nem mozog, nem takarja semmi. Aztán valódi egérkattintást küld a Chrome-nak a Playwrighton keresztül. Nincs találgatás, és nincs vakon várakozás.',
+          focus: ['server', 'chrome'], packets: [{ w: 'cdp', d: 1, l: 'click' }], cap: 'a szerverben · példa',
+          code: R`e12 → button "Belépés"   (t1 fül, fő keret)
+✓ látható   ✓ nem mozog   ✓ engedélyezett   ✓ nem takarja semmi
+→ görgetés, ha kell → egérkattintás a gomb közepére` },
+        { title: 'Az oldal dolgozik', text: 'A Chrome elküldi a bejelentkezést a Jirának, a Jira pedig átirányít a kezdőlapra.',
+          focus: ['chrome', 'web'], packets: [{ w: 'web', d: 1, l: 'POST /login' }, { w: 'web', d: -1, l: '302 → /' }], cap: 'hálózat',
+          code: R`POST https://jira.example.com/login   302
+GET  https://jira.example.com/        200` },
+        { title: 'Mi történt?', text: 'A szerver közben figyel: volt-e navigáció, nyílt-e új fül, jött-e felugró ablak vagy letöltés. Megvárja, amíg az oldal megnyugszik, de csak rövid ideig: a DOM-ra legfeljebb 0,6, a hálózatra legfeljebb 1,5 másodpercig.',
+          focus: ['chrome', 'server'], packets: [{ w: 'cdp', d: -1, l: 'események' }], cap: 'a szerver ezeket figyeli · példa',
+          code: R`framenavigated    https://jira.example.com/
+requestfinished   GET / 200
+DOM csendes 100 ms óta ✓   (felső korlát: 600 ms)` },
+        { title: 'Rövid válasz megy vissza', text: 'Nem az egész oldal megy vissza, csak egy hatás-összefoglaló. Mivel új oldal töltődött be, mellé kerül a friss pillanatkép is, a látható részről (az egész oldalhoz külön snapshot kell).',
+          focus: ['server', 'client'], packets: [{ w: 'stdout', d: -1, l: 'result' }], cap: 'stdout → kliens',
+          code: R`{"jsonrpc": "2.0", "id": 7, "result": {"content": [{"type": "text",
+ "text": "[t1] clicked e12 button \"Belépés\"\n→ navigated https://jira.example.com/ \"Kezdőlap – Jira\" (200)\n\n[t1] \"Kezdőlap – Jira\" https://jira.example.com/ (untrusted page content)\n- banner e20 …"}]}}` },
+        { title: 'tool_result a modellnek', text: 'A Claude Code tool_result blokként adja vissza a választ a modellnek.',
+          focus: ['host', 'model'], packets: [{ w: 'api', d: 1, l: 'tool_result' }], cap: 'a következő API-kérésben',
+          code: R`{"type": "tool_result",
+ "tool_use_id": "toolu_01A…",
+ "content": "[t1] clicked e12 button \"Belépés\"\n→ navigated https://jira.example.com/ …"}` },
+        { title: 'És újra', text: 'A modell elolvassa, mi történt, és dönt a következő lépésről: például a find eszközzel megkeresi a PROJ-123-et. Ez az ügynökciklus. Minden kör egy oda-vissza út a modellig, ezért éri meg spórolni a körökkel.',
+          focus: ['model', 'host'], packets: [{ w: 'api', d: -1, l: 'tool_use' }], cap: 'a következő kör',
+          code: R`{"type": "tool_use",
+ "name": "mcp__motorika__find",
+ "input": {"query": "PROJ-123"}}` },
+      ],
+    },
+    {
+      id: 'shared', name: 'Két munkamenet', s2: true, badges: { server: 'tulajdonos' },
+      steps: [
+        { title: 'Az első munkamenet a tulajdonos', text: 'Az első Claude Code Motorikája elindította a Chrome-ot a külön profillal, amelyben be vagy jelentkezve. Ő a tulajdonos.',
+          focus: ['host', 'server', 'chrome'], wires: ['cdp'], off: ['host2', 'server2'], cap: '1. munkamenet',
+          code: R`profil: ~/.motorika/profile     ← bejelentkezések, sütik
+Chrome ← Playwright, belső csövön (nincs hálózati port)` },
+        { title: 'Jön egy második munkamenet', text: 'Egy másik terminálban is fut egy Claude Code. Neki is elindul a saját Motorika-folyamata.',
+          focus: ['host2', 'server2'], packets: [{ w: 'stdio2', d: 1, l: 'initialize' }], cap: '2. munkamenet',
+          code: R`$ claude      # egy másik terminálban
+→ node …/motorika/dist/index.js   (saját folyamat)` },
+        { title: 'A profil foglalt', text: 'Egy profilt egyszerre csak egy Chrome használhat. A második szerver ezt észreveszi, de nem nyit üres, bejelentkezések nélküli böngészőt.',
+          focus: ['server2'], pulse: 'server2', cap: 'a második szerver ellenőrzi · példa',
+          code: R`~/.motorika/profile/SingletonLock → pid 48211 (él)
+→ egy Motorika tulajdonos fogja: csatlakozom` },
+        { title: 'Inkább csatlakozik', text: 'A tulajdonos egy helyi socketen várja a csatlakozókat. Ezt csak a te felhasználód érheti el (0600-as jogosultság), és nincs hozzá hálózati port. A második szerver ide kapcsolódik.',
+          focus: ['server2', 'server'], packets: [{ w: 'socket', d: 1, l: 'csatlakozás' }], badges: { server2: 'csatlakozó' }, cap: 'a socket fájl · példa',
+          code: R`$ ls -l ~/.motorika/run/
+srw-------  3fa9c1d2e4b7.sock      ← csak te érheted el` },
+        { title: 'Közös böngésző, saját fülek', text: 'A második munkamenet hívásait a tulajdonos hajtja végre, ugyanabban a Chrome-ban, ugyanazokkal a bejelentkezésekkel. Mindkét munkamenet csak a saját füleit látja, és az azonosítók sosem ütköznek.',
+          focus: ['host2', 'server2', 'server', 'chrome'], packets: [{ w: 'stdio2', d: 1, l: 'tools/call' }, { w: 'socket', d: 1, l: 'tools/call' }, { w: 'cdp', d: 1, l: 'navigate' }], badges: { server2: 'csatlakozó' }, cap: 'ki mit lát · példa',
+          code: R`1. munkamenet: t1 t2     e1 … e140
+2. munkamenet: t3        e141 …` },
+        { title: 'Az eredmény visszaér', text: 'A válasz a socketen jön vissza, onnan pedig a második Claude Code-hoz.',
+          focus: ['chrome', 'server', 'server2', 'host2'], packets: [{ w: 'cdp', d: -1, l: 'események' }, { w: 'socket', d: -1, l: 'result' }, { w: 'stdio2', d: -1, l: 'result' }], badges: { server2: 'csatlakozó' }, cap: 'vissza',
+          code: R`socket ← {"id": 12, "result": {"content": [ … ]}}
+stdout ← ugyanez, a második Claude Code-nak` },
+        { title: 'Ha a tulajdonos kilép', text: 'Ha az első munkamenet bezárul, a Chrome is leáll vele. A második a következő hívásnál átveszi a szerepét: újraindítja a Chrome-ot ugyanazzal a profillal. A bejelentkezések megmaradnak, a régi fülek nem.',
+          focus: ['server2', 'chrome'], off: ['host', 'client', 'server'], packets: [{ w: 'cdp2', d: 1, l: 'indítás' }], badges: { server: 'kilépett', server2: 'új tulajdonos' }, cap: 'átvétel · példa',
+          code: R`1. munkamenet: kilépett → a Chrome leállt
+2. munkamenet: következő hívás → átveszi, újraindítja a Chrome-ot
+(a bejelentkezések megvannak, a régi fülek nem)` },
+      ],
+    },
+  ];
+
+  /* ---------- board rendering ---------- */
+  const svg = $('#schematic');
+  const board = $('#board');
+  const mods = {};
+  const wires = {};
+  let packetLayer = null;
+  let layoutName = null;
+
+  function setBadge(o, text) {
+    if (!text) { o.badge.style.display = 'none'; return; }
+    o.badge.style.display = '';
+    const t = o.badge.querySelector('text');
+    const r = o.badge.querySelector('rect');
+    t.textContent = text;
+    const w = t.getComputedTextLength() + 14;
+    r.setAttribute('x', String(-w));
+    r.setAttribute('width', String(w));
+    t.setAttribute('x', String(-w / 2));
+  }
+
+  function render(name) {
+    layoutName = name;
+    const L = LAYOUTS[name];
+    svg.textContent = '';
+    for (const k of Object.keys(mods)) delete mods[k];
+    for (const k of Object.keys(wires)) delete wires[k];
+    svg.setAttribute('viewBox', `0 0 ${L.vb[0]} ${L.vb[1]}`);
+    const defs = el('defs', {}, svg);
+    const f = el('filter', { id: 'glow', x: '-50%', y: '-50%', width: '200%', height: '200%' }, defs);
+    el('feGaussianBlur', { stdDeviation: 2.6, result: 'b' }, f);
+    const merge = el('feMerge', {}, f);
+    el('feMergeNode', { in: 'b' }, merge);
+    el('feMergeNode', { in: 'SourceGraphic' }, merge);
+
+    const wireLayer = el('g', { class: 'wires' }, svg);
+    for (const [id, w] of Object.entries(L.wires)) {
+      const cls = ['wire'];
+      if (w.s2) cls.push('s2');
+      if (w.hidden) cls.push('hide');
+      const p = el('path', { d: w.d, class: cls.join(' ') }, wireLayer);
+      if (w.text) {
+        const t = el('text', { x: w.lab[0], y: w.lab[1], 'text-anchor': w.lab[2], class: 'wire-label' + (w.s2 ? ' s2' : '') }, wireLayer);
+        t.textContent = w.text;
+        p.labelEl = t;
+      }
+      wires[id] = p;
+    }
+
+    const modLayer = el('g', { class: 'mods' }, svg);
+    for (const [id, m] of Object.entries(L.mods)) {
+      const cls = ['mod'];
+      if (m.inner) cls.push('inner');
+      if (m.s2) cls.push('s2');
+      const g = el('g', { class: cls.join(' '), 'data-id': id }, modLayer);
+      el('rect', { x: m.x, y: m.y, width: m.w, height: m.h, rx: m.inner ? 7 : 11, class: 'mod-box' }, g);
+      let tx = m.x + 14;
+      if (m.icon) {
+        const ig = el('g', { class: 'mod-icon', transform: `translate(${m.x + 12} ${m.y + 12}) scale(${L.icon / 24})` }, g);
+        for (const [tag, a] of ICONS[m.icon]) el(tag, a, ig);
+        tx = m.x + 12 + L.icon + 8;
+      }
+      const label = el('text', {
+        x: m.inner ? m.x + m.w / 2 : tx,
+        y: m.inner ? m.y + m.h / 2 + 5 : m.y + 12 + L.icon * 0.78,
+        'text-anchor': m.inner ? 'middle' : 'start',
+        class: 'mod-label',
+      }, g);
+      label.textContent = m.label;
+      if (m.sub) {
+        const s = el('text', { x: m.x + 14, y: m.y + m.h - 13, class: 'mod-sub' }, g);
+        s.textContent = m.sub;
+      }
+      const badge = el('g', { class: 'badge', transform: `translate(${m.x + m.w - 8} ${m.y - 9})` }, g);
+      el('rect', { x: -10, y: 0, width: 10, height: 18, rx: 9 }, badge);
+      el('text', { x: -5, y: 12.6, 'text-anchor': 'middle' }, badge);
+      badge.style.display = 'none';
+      mods[id] = { g, badge };
+    }
+    packetLayer = el('g', { class: 'packets' }, svg);
+  }
+
+  /* ---------- state ---------- */
+  let sceneIdx = 0;
+  let stepIdx = 0;
+  let runToken = 0;
+  let playing = false;
+  let playTimer = 0;
+  const tabs = $('#tabs');
+  const pipsBox = $('#pips');
+  const prevBtn = $('#prev');
+  const nextBtn = $('#next');
+  const playBtn = $('#play');
+
+  function applyState(scene, st) {
+    const focus = new Set(st.focus || []);
+    const off = new Set([...(scene.off || []), ...(st.off || [])]);
+    const badges = Object.assign({}, scene.badges || {}, st.badges || {});
+    svg.classList.toggle('show-s2', !!scene.s2);
+    for (const [id, o] of Object.entries(mods)) {
+      const isFocus = focus.has(id);
+      o.g.classList.toggle('focus', isFocus);
+      o.g.classList.toggle('dim', focus.size > 0 && !isFocus);
+      o.g.classList.toggle('off', off.has(id));
+      o.g.classList.remove('pulse');
+      let b = badges[id];
+      if (!b && off.has(id) && id !== 'client') b = 'nem fut';
+      setBadge(o, b);
+    }
+    const active = new Set((st.packets || []).map((p) => p.w).concat(st.wires || []));
+    for (const [id, p] of Object.entries(wires)) {
+      p.classList.toggle('active', active.has(id));
+      if (p.labelEl) p.labelEl.classList.toggle('active', active.has(id));
+    }
+  }
+
+  function makePacket(label) {
+    const g = el('g', { class: 'packet' }, packetLayer);
+    const r = el('rect', { x: -20, y: -10, width: 40, height: 20, rx: 10 }, g);
+    const t = el('text', { x: 0, y: 4, 'text-anchor': 'middle' }, g);
+    t.textContent = label;
+    const w = t.getComputedTextLength() + 18;
+    r.setAttribute('x', String(-w / 2));
+    r.setAttribute('width', String(w));
+    return g;
+  }
+
+  function travel(p, token, park) {
+    return new Promise((resolve) => {
+      const path = wires[p.w];
+      if (!path) { resolve(); return; }
+      const g = makePacket(p.l);
+      const len = path.getTotalLength();
+      const from = p.d > 0 ? 0 : 1;
+      const to = 1 - from;
+      const place = (frac) => {
+        const pt = path.getPointAtLength(frac * len);
+        g.setAttribute('transform', `translate(${pt.x.toFixed(1)} ${pt.y.toFixed(1)})`);
+      };
+      if (reduceMotion) {
+        place(to);
+        if (park) resolve(); else setTimeout(() => { g.remove(); resolve(); }, 350);
+        return;
+      }
+      const dur = Math.max(700, Math.min(1500, len * 7));
+      const t0 = performance.now();
+      place(from);
+      const frame = (now) => {
+        if (token !== runToken) { g.remove(); resolve(); return; }
+        const t = Math.min(1, (now - t0) / dur);
+        const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        place(from + (to - from) * e);
+        if (t < 1) requestAnimationFrame(frame);
+        else if (park) resolve();
+        else setTimeout(() => { g.remove(); resolve(); }, 180);
+      };
+      requestAnimationFrame(frame);
+    });
+  }
+
+  function parkInstantly(p) {
+    const path = wires[p.w];
+    if (!path) return;
+    const g = makePacket(p.l);
+    const len = path.getTotalLength();
+    const pt = path.getPointAtLength((p.d > 0 ? 1 : 0) * len);
+    g.setAttribute('transform', `translate(${pt.x.toFixed(1)} ${pt.y.toFixed(1)})`);
+  }
+
+  function buildPips(scene) {
+    pipsBox.textContent = '';
+    scene.steps.forEach((_, k) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `${k + 1}. lépés`);
+      b.addEventListener('click', () => { setPlaying(false); go(k); });
+      pipsBox.appendChild(b);
+    });
+  }
+
+  function updateText(scene, i) {
+    const st = scene.steps[i];
+    $('#step-k').textContent = `${scene.name} · ${i + 1}. lépés`;
+    $('#step-title').textContent = st.title;
+    $('#step-text').textContent = st.text;
+    $('#step-count').textContent = `${i + 1} / ${scene.steps.length}`;
+    $('#step-cap').textContent = st.cap || 'példa';
+    highlight(st.code || '', $('#step-code'));
+    [...pipsBox.children].forEach((b, k) => {
+      b.classList.toggle('on', k === i);
+      if (k === i) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
+    });
+    prevBtn.disabled = i === 0;
+    const last = i === scene.steps.length - 1;
+    nextBtn.textContent = last ? (sceneIdx < SCENES.length - 1 ? 'Következő jelenet' : 'Elölről') : 'Következő';
+  }
+
+  async function go(i, animate = true) {
+    const scene = SCENES[sceneIdx];
+    stepIdx = Math.max(0, Math.min(scene.steps.length - 1, i));
+    const token = ++runToken;
+    clearTimeout(playTimer);
+    if (packetLayer) packetLayer.textContent = '';
+    const st = scene.steps[stepIdx];
+    applyState(scene, st);
+    updateText(scene, stepIdx);
+    const packets = st.packets || [];
+    if (animate) {
+      for (let k = 0; k < packets.length; k++) {
+        await travel(packets[k], token, k === packets.length - 1);
+        if (token !== runToken) return;
+      }
+    } else if (packets.length) {
+      parkInstantly(packets[packets.length - 1]);
+    }
+    if (st.pulse && animate && !reduceMotion && mods[st.pulse]) mods[st.pulse].g.classList.add('pulse');
+    if (playing && token === runToken) {
+      const wait = reduceMotion ? 5200 : Math.min(9000, 2000 + st.text.length * 28);
+      playTimer = setTimeout(advance, wait);
+    }
+  }
+
+  function selectScene(idx, animate = true) {
+    sceneIdx = idx;
+    [...tabs.children].forEach((t, k) => {
+      t.setAttribute('aria-selected', String(k === idx));
+      t.tabIndex = k === idx ? 0 : -1;
+    });
+    buildPips(SCENES[idx]);
+    go(0, animate);
+  }
+
+  function advance() {
+    const scene = SCENES[sceneIdx];
+    if (stepIdx < scene.steps.length - 1) { go(stepIdx + 1); return; }
+    if (sceneIdx < SCENES.length - 1) { selectScene(sceneIdx + 1); return; }
+    setPlaying(false);
+  }
+
+  function setPlaying(on) {
+    playing = on;
+    playBtn.textContent = on ? 'Szünet' : 'Lejátszás';
+    playBtn.setAttribute('aria-pressed', String(on));
+    if (!on) clearTimeout(playTimer);
+  }
+
+  SCENES.forEach((s, k) => {
+    const t = document.createElement('button');
+    t.type = 'button';
+    t.setAttribute('role', 'tab');
+    t.innerHTML = '';
+    const n = document.createElement('span');
+    n.className = 'n';
+    n.textContent = String(k + 1);
+    t.appendChild(n);
+    t.appendChild(document.createTextNode(s.name));
+    t.addEventListener('click', () => { setPlaying(false); selectScene(k); });
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      e.stopPropagation();
+      const j = (k + (e.key === 'ArrowRight' ? 1 : SCENES.length - 1)) % SCENES.length;
+      setPlaying(false);
+      selectScene(j);
+      tabs.children[j].focus();
+    });
+    tabs.appendChild(t);
+  });
+
+  prevBtn.addEventListener('click', () => { setPlaying(false); go(stepIdx - 1); });
+  nextBtn.addEventListener('click', () => {
+    setPlaying(false);
+    const scene = SCENES[sceneIdx];
+    if (stepIdx < scene.steps.length - 1) go(stepIdx + 1);
+    else if (sceneIdx < SCENES.length - 1) selectScene(sceneIdx + 1);
+    else selectScene(0);
+  });
+  playBtn.addEventListener('click', () => {
+    if (playing) { setPlaying(false); return; }
+    setPlaying(true);
+    const scene = SCENES[sceneIdx];
+    if (stepIdx === scene.steps.length - 1 && sceneIdx === SCENES.length - 1) selectScene(0);
+    else go(stepIdx);
+  });
+
+  let boardVisible = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => { boardVisible = entries[0].isIntersecting; }, { threshold: 0.2 }).observe(board);
+  }
+  document.addEventListener('keydown', (e) => {
+    if (!boardVisible || e.altKey || e.ctrlKey || e.metaKey) return;
+    const t = e.target;
+    if (t && t.closest && t.closest('input, textarea, select, [contenteditable], [role="tab"]')) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); if (!prevBtn.disabled) prevBtn.click(); }
+  });
+
+  const pickLayout = () => (board.clientWidth < 620 ? 'narrow' : 'wide');
+  render(pickLayout());
+  selectScene(0, true);
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      const want = pickLayout();
+      if (want !== layoutName) { render(want); go(stepIdx, false); }
+    }).observe(board);
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => { render(layoutName); go(stepIdx, false); });
+  }
+
+  /* ---------- snapshot chapter ---------- */
+  const SNAP = [
+    { d: 0, role: 'banner', ref: 'e5' },
+    { d: 1, role: 'link', name: 'Jira', ref: 'e6', attrs: 'href="/"' },
+    { d: 0, role: 'main', ref: 'e7' },
+    { d: 1, role: 'heading', name: 'Bejelentkezés', ref: 'e8', attrs: 'level=1' },
+    { d: 1, role: 'textbox', name: 'E-mail', ref: 'e9', attrs: 'type=email required value="anna@pelda.hu"' },
+    { d: 1, role: 'textbox', name: 'Jelszó', ref: 'e10', attrs: 'password value=<redacted>' },
+    { d: 1, role: 'checkbox', name: 'Emlékezz rám', ref: 'e11', attrs: 'checked=false' },
+    { d: 1, role: 'button', name: 'Belépés', ref: 'e12' },
+    { d: 1, role: 'link', name: 'Elfelejtett jelszó?', ref: 'e13', attrs: 'href="/reset"' },
+  ];
+  const CALLS = {
+    e5: { call: R`snapshot {"scope": "e5"}`, note: 'Csak a fejlécet kéri le, nem az egész oldalt.' },
+    e6: { call: R`click {"target": "e6"}`, note: 'A logó linkje: a kezdőlapra vinne.' },
+    e7: { call: R`snapshot {"scope": "e7", "mode": "full"}`, note: 'A fő tartalom részletesen, a szövegekkel együtt.' },
+    e8: { call: R`scroll {"target": "e8"}`, note: 'Odagörget a címhez.' },
+    e9: { call: R`type {"target": "e9", "text": "anna@pelda.hu"}`, note: 'Beírja az e-mail-címet, a korábbi értéket lecseréli.' },
+    e10: { call: R`type {"target": "e10", "text": "…"}`, note: 'A jelszó a kérésben benne van, a válaszokban viszont soha: ott csak value=<redacted> látszik.' },
+    e11: { call: R`click {"target": "e11"}`, note: 'Bepipálja. A következő pillanatképben már checked=true áll.' },
+    e12: { call: R`click {"target": "e12"}`, note: 'Belép. A válasz egy „→ navigated …” sor, mellette az új oldal pillanatképe.' },
+    e13: { call: R`click {"target": "e13"}`, note: 'Az elfelejtett jelszó oldalára visz.' },
+  };
+  const list = $('#snap-list');
+  const mock = $('#mock');
+  const head = document.createElement('li');
+  const headBtn = document.createElement('div');
+  headBtn.className = 'snap-line';
+  headBtn.style.cursor = 'default';
+  headBtn.textContent = '[t1] "Bejelentkezés – Jira" https://jira.example.com/login (untrusted page content)';
+  head.appendChild(headBtn);
+  list.appendChild(head);
+  const lineByRef = {};
+  for (const row of SNAP) {
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'snap-line';
+    b.style.paddingLeft = `${14 + row.d * 18}px`;
+    const part = (text, cls) => { const s = document.createElement('span'); if (cls) s.className = cls; s.textContent = text; b.appendChild(s); };
+    part('- ');
+    part(row.role, 'role');
+    if (row.name) { part(' '); part(JSON.stringify(row.name), 'name'); }
+    part(' ');
+    part(row.ref, 'ref');
+    if (row.attrs) { part(' '); part(row.attrs, 'attr'); }
+    b.dataset.ref = row.ref;
+    b.addEventListener('mouseenter', () => hl(row.ref));
+    b.addEventListener('focus', () => hl(row.ref));
+    b.addEventListener('mouseleave', () => hl(selected));
+    b.addEventListener('click', () => select(row.ref));
+    li.appendChild(b);
+    list.appendChild(li);
+    lineByRef[row.ref] = b;
+  }
+  let selected = 'e12';
+  function hl(ref) {
+    mock.querySelectorAll('[data-ref]').forEach((n) => n.classList.toggle('hl', n.dataset.ref === ref));
+    Object.entries(lineByRef).forEach(([r, b]) => b.classList.toggle('hl', r === ref));
+  }
+  function select(ref) {
+    selected = ref;
+    const c = CALLS[ref];
+    $('#call-k').textContent = `A modell így hivatkozhat az ${ref}-${ref === 'e5' ? 're' : 're'}`;
+    highlight(c.call, $('#call-code'));
+    $('#call-note').textContent = c.note;
+    hl(ref);
+  }
+  mock.querySelectorAll('[data-ref]').forEach((n) => {
+    n.addEventListener('mouseenter', (e) => { e.stopPropagation(); hl(n.dataset.ref); });
+    n.addEventListener('mouseleave', () => hl(selected));
+    n.addEventListener('click', (e) => { e.stopPropagation(); select(n.dataset.ref); });
+  });
+  select('e12');
+  highlight(R`fill_form {
+  "fields": [
+    {"target": "e9",  "value": "anna@pelda.hu"},
+    {"target": "e10", "value": "…"},
+    {"target": "e11", "value": true}
+  ],
+  "submit": "e12"
+}`, $('#fill-code'));
+  const labelsBtn = $('#labels');
+  labelsBtn.addEventListener('click', () => {
+    const on = !mock.classList.contains('labels');
+    mock.classList.toggle('labels', on);
+    labelsBtn.setAttribute('aria-pressed', String(on));
+  });
+
+  /* ---------- speed chapter ---------- */
+  const LANE_A = [['type', 'Név'], ['type', 'E-mail'], ['type', 'Telefon'], ['type', 'Cég'], ['type', 'Üzenet'], ['click', 'Küldés']];
+  const rowsA = $('#rows-a');
+  const rowsB = $('#rows-b');
+  const roundsA = $('#rounds-a');
+  const roundsB = $('#rounds-b');
+  function addRow(box, call, pct, label, long) {
+    const r = document.createElement('div');
+    r.className = 'row';
+    const c = document.createElement('span');
+    c.className = 'c';
+    c.textContent = call;
+    const bar = document.createElement('div');
+    bar.className = 'bar' + (long ? ' long' : '');
+    const fill = document.createElement('span');
+    fill.style.width = `${pct}%`;
+    const em = document.createElement('em');
+    em.textContent = label;
+    bar.append(fill, em);
+    r.append(c, bar);
+    box.appendChild(r);
+  }
+  let speedTimers = [];
+  function speedFinal() {
+    rowsA.textContent = '';
+    rowsB.textContent = '';
+    LANE_A.forEach(([t, f]) => addRow(rowsA, `${t} → ${f}`, 100, 'teljes oldal', true));
+    addRow(rowsB, 'fill_form → 5 mező', 13, '3 sor', false);
+    roundsA.textContent = '6';
+    roundsB.textContent = '1';
+  }
+  function speedPlay() {
+    speedTimers.forEach(clearTimeout);
+    speedTimers = [];
+    if (reduceMotion) { speedFinal(); return; }
+    rowsA.textContent = '';
+    rowsB.textContent = '';
+    roundsA.textContent = '0';
+    roundsB.textContent = '0';
+    speedTimers.push(setTimeout(() => { addRow(rowsB, 'fill_form → 5 mező', 13, '3 sor', false); roundsB.textContent = '1'; }, 300));
+    LANE_A.forEach(([t, f], k) => {
+      speedTimers.push(setTimeout(() => { addRow(rowsA, `${t} → ${f}`, 100, 'teljes oldal', true); roundsA.textContent = String(k + 1); }, 300 + k * 650));
+    });
+  }
+  speedFinal();
+  $('#speed-play').addEventListener('click', speedPlay);
+})();
+</script>

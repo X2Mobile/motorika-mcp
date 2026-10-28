@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Cross-origin fetch</title><script src="/oracle.js"></script></head>
+<body>
+<!-- R2: served on origin A, fetches origin B's /api/data in no-cors mode (so CORS cannot fail it).
+     Unblocked: __events = ['xo:ok'] and origin B records the request. Blocked: 'xo:err', nothing recorded. -->
+<h1>Cross-origin fetch</h1>
+<script>
+  fetch('__OTHER_ORIGIN__/api/data?from=xo', { mode: 'no-cors' })
+    .then(() => __log('xo:ok'), () => __log('xo:err'));
+</script>
+</body>
+</html>

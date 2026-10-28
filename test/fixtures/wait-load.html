@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Wait load</title></head>
+<body>
+<!-- D11 load_state: the image delays the load event by ~1500 ms; DOMContentLoaded is immediate. -->
+<h1>Wait load</h1>
+<img src="/slow?ms=1500" alt="slow image" width="10" height="10">
+<script>window.addEventListener('load', () => { window.__loadedAt = performance.now(); });</script>
+</body>
+</html>

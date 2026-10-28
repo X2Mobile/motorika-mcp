@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>SPA</title><script src="/oracle.js"></script></head>
+<body>
+<!-- D10: the button changes the URL to /spa/section-2 with history.pushState (same document). -->
+<h1>SPA</h1>
+<button type="button" id="go" onclick="history.pushState({}, '', '/spa/section-2'); document.getElementById('where').textContent = 'Section 2'">Go to section</button>
+<p id="where">Section 1</p>
+</body>
+</html>

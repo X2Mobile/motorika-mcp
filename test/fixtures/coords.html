@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Coordinate targets</title>
+<style>
+  body { margin: 0; height: 3000px; position: relative; }
+  #coord { position: absolute; left: 300px; top: 200px; width: 160px; height: 60px; }
+  #below { position: absolute; left: 400px; top: 2400px; width: 240px; height: 120px; }
+</style>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- C11 oracle: __counts.coord / __counts.below. Positions are fixed (CSS px, page coordinates):
+     "Coord target" 300,200 160x60; "Below fold target" 400,2400 240x120; page height 3000. -->
+<button id="coord" type="button" onclick="__count('coord')">Coord target</button>
+<button id="below" type="button" onclick="__count('below')">Below fold target</button>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Console and network</title>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D15 spec (test/support/spec.ts CONSOLE_PAGE). On load:
+     console.log / console.warn / console.error with fixed messages, one uncaught exception,
+     fetch GET /api/data with an Authorization header (200), fetch /fail/500 (500),
+     fetch /hang aborted after 300 ms (failed). Bodies are read to the end. __events records each outcome. -->
+<h1>Console and network</h1>
+<script>
+  console.log('fixture-log-message');
+  console.warn('fixture-warning-message');
+  console.error('fixture-error-message');
+  setTimeout(() => { throw new Error('fixture-uncaught-boom'); }, 50);
+  fetch('/api/data', { headers: { Authorization: 'Bearer fixture-secret-token-5521' } })
+    .then((r) => r.text().then(() => __log('api:' + r.status)));
+  fetch('/fail/500').then((r) => r.text().then(() => __log('fail:' + r.status)));
+  const ctl = new AbortController();
+  fetch('/hang', { signal: ctl.signal }).catch(() => __log('hang:aborted'));
+  setTimeout(() => ctl.abort(), 300);
+</script>
+</body>
+</html>

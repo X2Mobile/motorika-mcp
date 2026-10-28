@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Tide tables explained</title></head>
+<!-- 2026-10-26 (read keeps comment sections): a blog post with a <section id="comments">, whose comments
+     read must return (an agent asked to read the page wants them), and blocks whose class names contain
+     "ad" only as a substring (shadow, header, padding, loading, badge), which must be read too: boilerplate
+     tokens match whole tokens only. Real boilerplate (nav, footer, cookie, ad, ads, sidebar, share,
+     related, newsletter) must still be dropped, and so must a short aria-label that is boilerplate
+     ("Advertisement", "Cookie consent", "Related posts"). -->
+<body>
+<nav>NAV-BOILERPLATE Home Archive</nav>
+<div class="cookie-consent">COOKIE-BOILERPLATE We use cookies.</div>
+<main>
+  <article>
+    <h1>Tide tables explained</h1>
+    <p>ARTICLE-BODY: tides follow the moon.</p>
+    <div class="card shadow">SHADOW-TEXT kept</div>
+    <div class="section-header">HEADER-TEXT kept</div>
+    <div class="padding-lg">PADDING-TEXT kept</div>
+    <div class="loading">LOADING-TEXT kept</div>
+    <div class="badge">BADGE-TEXT kept</div>
+    <div class="ad">AD-BOILERPLATE buy anchors</div>
+    <div class="ads banner-slot">ADS-BOILERPLATE sponsored</div>
+    <div class="share">SHARE-BOILERPLATE share this</div>
+    <div class="related">RELATED-BOILERPLATE more posts</div>
+    <div class="newsletter">NEWSLETTER-BOILERPLATE sign up</div>
+    <div aria-label="Advertisement">LABEL-AD-BOILERPLATE</div>
+    <div aria-label="Cookie consent">LABEL-COOKIE-BOILERPLATE</div>
+    <div aria-label="Share">LABEL-SHARE-BOILERPLATE</div>
+    <div aria-label="Sponsored">LABEL-SPONSORED-BOILERPLATE</div>
+    <div aria-label="Related posts">LABEL-RELATED-BOILERPLATE</div>
+    <div aria-label="Breadcrumb">LABEL-BREADCRUMB-BOILERPLATE</div>
+    <div class="comment-ad">COMMENT-AD-BOILERPLATE</div>
+    <div class="comments-sidebar">COMMENTS-SIDEBAR-BOILERPLATE</div>
+  </article>
+  <section id="comments" class="comments">
+    <h2>3 Comments</h2>
+    <ol class="comment-list">
+      <li class="comment"><p class="comment-author">AUTHOR-MARA</p><p>BLOG-COMMENT-ONE: great explainer.</p></li>
+      <li class="comment"><p class="comment-author">AUTHOR-ION</p><p>BLOG-COMMENT-TWO: what about spring tides?</p></li>
+    </ol>
+  </section>
+</main>
+<aside class="sidebar">SIDEBAR-BOILERPLATE about me</aside>
+<footer>FOOTER-BOILERPLATE Copyright 2026.</footer>
+</body>
+</html>

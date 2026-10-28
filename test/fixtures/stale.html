@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stale refs</title>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- C4 oracle: window.__counts.save counts clicks on ANY "Save" button (old ones are removed on re-render). -->
+<h1>Stale refs</h1>
+<div id="area"><button type="button" class="save" onclick="__count('save')">Save</button></div>
+<script>
+  // Replaces the Save button(s) with n brand-new elements (the old node is removed from the DOM).
+  window.rerender = (n) => {
+    const fresh = [];
+    for (let i = 0; i < n; i++) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'save';
+      b.textContent = 'Save';
+      b.addEventListener('click', () => __count('save'));
+      fresh.push(b);
+    }
+    document.getElementById('area').replaceChildren(...fresh);
+  };
+</script>
+<button type="button" id="rr1" onclick="rerender(1)">Re-render single</button>
+<button type="button" id="rr2" onclick="rerender(2)">Re-render double</button>
+</body>
+</html>

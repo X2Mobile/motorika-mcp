@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Long href</title></head>
+<body>
+<!-- Review SEC-3: the first snapshot line is a visible link whose href is 12,000 chars ("/x?q=" +
+     12,000 "a"); a heading and a button follow. A long line that is not first goes to the next page. -->
+<a id="long" href="">Long link</a>
+<h1>Long href</h1>
+<button type="button">After</button>
+<script>document.getElementById('long').setAttribute('href', '/x?q=' + 'a'.repeat(12000));</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Late alert</title>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- SQ2 oracle: click N of "Save" writes "Saved N" into the role=alert region 30 ms later (setTimeout,
+     no network). window.__counts.save counts the clicks. -->
+<h1>Late alert</h1>
+<button id="save" type="button" onclick="
+  __count('save');
+  const n = window.__counts.save;
+  setTimeout(() => { document.getElementById('msg').textContent = 'Saved ' + n; }, 30)">Save</button>
+<div id="msg" role="alert"></div>
+</body>
+</html>

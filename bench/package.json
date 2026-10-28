@@ -1,0 +1,14 @@
+{
+  "name": "motorika-bench-contenders",
+  "private": true,
+  "description": "Pinned third-party MCP servers for the benchmark, launched with node directly so cold start excludes npx resolution.",
+  "dependencies": {
+    "@agent-infra/mcp-server-browser": "1.2.29",
+    "@modelcontextprotocol/server-puppeteer": "2025.5.12",
+    "@playwright/mcp": "0.0.83",
+    "chrome-devtools-mcp": "1.12.0"
+  },
+  "scripts": {
+    "test": "node --test agent/run.test.mjs agent/shop.test.mjs report.test.mjs merge-agent.test.mjs"
+  }
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>test: listing</title></head>
+<!-- P2 (real-world feedback): an old.reddit listing row, trimmed. "8 comments" is ul.flat-list.buttons >
+     li.first > a.comments; read must keep it with its link. The site navigation (nav, header menu) stays out. -->
+<body class="listing-page">
+<header class="site-header"><div class="menu"><a href="/hot">HEADER-MENU-HOT</a> <a href="/new">HEADER-MENU-NEW</a></div></header>
+<nav><ul><li><a href="/r/popular">NAV-POPULAR</a></li><li><a href="/r/all">NAV-ALL</a></li></ul></nav>
+<div class="content" role="main">
+  <div class="sitetable linklisting" id="siteTable">
+    <div class="thing id-t3_abc odd link" data-fullname="t3_abc">
+      <span class="rank">1</span>
+      <div class="entry unvoted">
+        <div class="top-matter">
+          <p class="title"><a class="title may-blank" href="/r/test/comments/abc/first_post/">First post title</a> <span class="domain">(<a href="/r/test/">self.test</a>)</span></p>
+          <p class="tagline">submitted <time datetime="2026-10-22T10:00:00+00:00">3 hours ago</time> by <a href="https://old.reddit.com/user/alice" class="author may-blank">alice</a></p>
+          <ul class="flat-list buttons">
+            <li class="first"><a href="/r/test/comments/abc/first_post/" data-event-action="comments" class="bylink comments may-blank" rel="nofollow">8 comments</a></li>
+            <li class="share"><a class="post-sharing-button" href="javascript: void 0;">share</a></li>
+            <li><form action="/post/hide" method="post" class="state-button hide-button"><input type="hidden" name="executed" value="HIDE-HIDDEN-VALUE"><span><a href="javascript:void(0)">hide</a></span></form></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="thing id-t3_def even link" data-fullname="t3_def">
+      <span class="rank">2</span>
+      <div class="entry unvoted">
+        <div class="top-matter">
+          <p class="title"><a class="title may-blank" href="/r/test/comments/def/second_post/">Second post title</a></p>
+          <ul class="flat-list buttons"><li class="first"><a href="/r/test/comments/def/second_post/" class="bylink comments empty may-blank">comment</a></li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

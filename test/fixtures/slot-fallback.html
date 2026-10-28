@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Slots</title></head>
+<!-- E1: slot fallback content renders only when nothing is assigned to the slot. -->
+<body>
+<script>
+  customElements.define('x-card', class extends HTMLElement {
+    constructor() {
+      super();
+      const r = this.attachShadow({ mode: 'open' });
+      const st = document.createElement('style');
+      st.textContent = ':host { display: block; } div { display: block; }';
+      const d = document.createElement('div');
+      const s = document.createElement('slot');
+      s.name = 'body';
+      const fb = document.createElement('p');
+      fb.textContent = 'FALLBACK-TEXT shown when empty';
+      s.append(fb);
+      d.append(s);
+      r.append(st, d);
+    }
+  });
+</script>
+<main>
+  <h1>Cards</h1>
+  <x-card id="empty"></x-card>
+  <x-card id="filled"><p slot="body">SLOTTED-TEXT replaces the fallback</p></x-card>
+</main>
+</body>
+</html>

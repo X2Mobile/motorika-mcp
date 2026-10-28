@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Click cases</title>
+<style>
+  .cover { position: relative; display: inline-block; margin: 8px; }
+  .cover .overlay { position: absolute; inset: -4px; background: rgba(200, 0, 0, 0.5); z-index: 10; }
+  #far { margin-top: 3000px; display: block; }
+</style>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D1/B2/B5/B6 oracle: window.__counts and window.__events. -->
+<h1>Click cases</h1>
+<button id="plain" type="button" onclick="__count('plain')">Plain</button>
+<button id="double" type="button" ondblclick="__count('double')">Double</button>
+<button id="right" type="button" oncontextmenu="event.preventDefault(); __count('right')">Right</button>
+<button id="shift" type="button" onclick="__count(event.shiftKey ? 'shift' : 'noShift')">Shift</button>
+
+<script>
+  window.showDelayed = () => setTimeout(() => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.id = 'delayed'; b.textContent = 'Delayed target';
+    b.addEventListener('click', () => __count('delayed'));
+    document.getElementById('delayed-slot').append(b);
+  }, 800);
+  // The overlay covers "Under temporary overlay" for 500 ms from the moment it is armed.
+  window.armTemp = () => {
+    const o = document.getElementById('temp-overlay');
+    o.style.display = 'block';
+    window.__armedAt = performance.now();
+    setTimeout(() => { o.style.display = 'none'; window.__disarmedAt = performance.now(); }, 500);
+  };
+</script>
+<button id="show-delayed" type="button" onclick="showDelayed()">Show delayed</button>
+<span id="delayed-slot"></span>
+
+<div>
+  <button id="arm-temp" type="button" onclick="armTemp()">Arm temporary overlay</button>
+  <span class="cover">
+    <button id="under-temp" type="button" onclick="__count('underTemp'); window.__underTempAt = performance.now()">Under temporary overlay</button>
+    <span id="temp-overlay" class="overlay" style="display:none" onclick="__count('tempOverlay')"></span>
+  </span>
+</div>
+
+<div>
+  <span class="cover">
+    <button id="under-perm" type="button" onclick="__count('underPerm')">Under permanent overlay</button>
+    <span id="perm-overlay" class="overlay blocking-overlay" onclick="__count('permOverlay')"></span>
+  </span>
+</div>
+
+<button id="disabled" type="button" disabled onclick="__count('disabled')">Disabled action</button>
+
+<div>
+  <button id="order-a" type="button" onclick="
+    __log('A-start');
+    fetch('/slow?ms=700').then(() => __log('A-end'))">Order A</button>
+  <button id="order-b" type="button" onclick="__log('B')">Order B</button>
+</div>
+
+<label>Tab input <input id="tab-input" type="text"></label>
+
+<button id="far" type="button" onclick="__count('far')">Far below</button>
+</body>
+</html>

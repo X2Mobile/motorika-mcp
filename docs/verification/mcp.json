@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "motorika": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/abs/path/to/motorika-mcp/dist/index.js", "--headless", "--isolated"]
+    }
+  }
+}

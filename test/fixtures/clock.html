@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Clock</title><script src="/oracle.js"></script></head>
+<body>
+<!-- R11 (review-lens decision 11): the DOM changes every 50 ms by itself (text + style attribute).
+     "Noop" has no effect on the page. window.__ticks counts the changes. -->
+<h1>Clock</h1>
+<p id="clock" style="color: rgb(0, 0, 0)">0</p>
+<button id="noop" type="button" onclick="__count('noop')">Noop</button>
+<script>
+  window.__ticks = 0;
+  setInterval(() => {
+    window.__ticks += 1;
+    const c = document.getElementById('clock');
+    c.textContent = String(window.__ticks);
+    c.style.color = window.__ticks % 2 ? 'rgb(0, 0, 1)' : 'rgb(0, 0, 0)';
+  }, 50);
+</script>
+</body>
+</html>

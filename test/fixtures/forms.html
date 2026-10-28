@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Full form</title>
+<style>label, fieldset { display: block; margin: 4px 0; } #bio { border: 1px solid #888; min-height: 2em; }</style>
+</head>
+<body>
+<!-- D3 full-form fixture. Spec (what to fill, what /submit?form=full records): test/support/spec.ts FULL_FORM. -->
+<h1>Full form</h1>
+<form id="full" method="post" enctype="multipart/form-data" action="/submit?form=full" aria-label="Full form">
+  <label for="full_name">Full name</label><input id="full_name" name="full_name">
+  <label for="email">Email</label><input id="email" type="email" name="email">
+  <label for="password">Password</label><input id="password" type="password" name="password" autocomplete="off">
+  <label for="comments">Comments</label><textarea id="comments" name="comments"></textarea>
+  <label for="country">Country</label>
+  <select id="country" name="country">
+    <option value="">Choose a country</option>
+    <option value="at">Austria</option>
+    <option value="be">Belgium</option>
+    <option value="ro">Romania</option>
+  </select>
+  <label for="toppings">Toppings</label>
+  <select id="toppings" name="toppings" multiple size="3">
+    <option value="olives">Olives</option>
+    <option value="basil">Basil</option>
+    <option value="ham">Ham</option>
+  </select>
+  <div><input type="checkbox" id="subscribe" name="subscribe" value="yes"><label for="subscribe" style="display:inline">Subscribe to newsletter</label></div>
+  <fieldset id="plan-group">
+    <legend>Plan</legend>
+    <label><input type="radio" name="plan" value="basic"> Basic</label>
+    <label><input type="radio" name="plan" value="pro"> Pro</label>
+    <label><input type="radio" name="plan" value="enterprise"> Enterprise</label>
+  </fieldset>
+  <label for="start_date">Start date</label><input type="date" id="start_date" name="start_date">
+  <label for="volume">Volume</label><input type="range" id="volume" name="volume" min="0" max="100" value="50">
+  <label for="color">Favorite color</label><input type="color" id="color" name="color" value="#000000">
+  <label for="attachment">Attachment</label><input type="file" id="attachment" name="attachment">
+  <span id="bio-label">Bio</span>
+  <div id="bio" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="bio-label"></div>
+  <input type="hidden" id="bio-hidden" name="bio">
+  <button type="submit">Send form</button>
+</form>
+<script>
+  // The contenteditable is mirrored into the hidden field on every input event and again on submit.
+  const bio = document.getElementById('bio');
+  const hidden = document.getElementById('bio-hidden');
+  const mirror = () => { hidden.value = bio.innerText.trim(); };
+  bio.addEventListener('input', mirror);
+  document.getElementById('full').addEventListener('submit', mirror);
+</script>
+</body>
+</html>

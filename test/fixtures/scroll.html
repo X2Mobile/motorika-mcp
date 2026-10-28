@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scroll cases</title>
+<style>
+  body { margin: 0; height: 6000px; } h1 { margin: 0; }
+  #box { width: 400px; height: 200px; overflow: auto; border: 1px solid #333; }
+  #box .inner { height: 3000px; background: linear-gradient(#fff, #99c); }
+</style>
+</head>
+<body>
+<!-- D6 oracle: window.scrollY and #box.scrollTop. Page height is fixed at 6000 px. -->
+<h1>Scroll cases</h1>
+<div id="box" role="region" aria-label="Scroll box" tabindex="0"><div class="inner"><button type="button">Box top button</button></div></div>
+<button type="button" style="position:absolute;top:5800px">Bottom button</button>
+</body>
+</html>

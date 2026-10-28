@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dialog cases</title>
+<script src="/oracle.js"></script>
+</head>
+<body>
+<!-- D9 oracle: window.__confirm (true/false), window.__prompt (text/null), __events 'after-alert'. -->
+<h1>Dialog cases</h1>
+<script>
+  window.__confirm = 'unset';
+  window.__prompt = 'unset';
+</script>
+<button id="alert" type="button" onclick="alert('Hello alert'); __log('after-alert')">Alert</button>
+<button id="confirm" type="button" onclick="window.__confirm = confirm('Proceed with the test?')">Confirm</button>
+<button id="prompt" type="button" onclick="window.__prompt = prompt('Your name?', 'default name')">Prompt</button>
+</body>
+</html>

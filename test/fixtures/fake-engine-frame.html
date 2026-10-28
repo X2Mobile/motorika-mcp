@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Fake engine frame</title>
+<script>
+  // Planted before the server installs its engine: the server then talks to this object instead.
+  window[Symbol.for('motorika.engine')] = {
+    docId: 'fake',
+    snapshot: () => ({ title: 'Fake', url: location.href, nodes: [{ id: 1, role: 'button', name: 'Fake button' }], iframes: [], omitted: 2.5, offscreen: 'abc' }),
+  };
+</script>
+</head>
+<body><button type="button">Real button</button></body>
+</html>

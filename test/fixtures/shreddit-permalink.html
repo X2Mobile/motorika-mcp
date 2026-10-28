@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Which tools do you use? : r/test</title>
+<style>
+  /* Reddit's own CSS renders these blocks (evidence: shreddit-comment, details, the grid div are block);
+     an undefined custom element would be inline. */
+  shreddit-app, shreddit-post, shreddit-comment-tree, shreddit-comment, comment-body-header { display: block; }
+  .comment-main-grid { display: grid; }
+</style>
+</head>
+<!-- 2026-10-26 (a live probe; the evidence notes are kept outside the repo): a www.reddit.com
+     comment permalink, trimmed. Plain light DOM, no shadow roots. Every comment sits in
+     section[aria-label=Comments]; read used to drop that section as boilerplate (token "comments") and
+     returned only the post body and its score. The comment-body-header text (8 chars live) is a stand-in.
+     Chain: div#t1_…-comment-rtjson-content.md > div.min-w-0 > div.comment-main-grid > details[role=article]
+     > shreddit-comment > section[aria-label=Comments] > shreddit-comment-tree#comment-tree
+     > div#comment-tree-content-anchor-abc123 > main#main-content. -->
+<body>
+<shreddit-app>
+<nav aria-label="Primary">NAV-BOILERPLATE Home Popular</nav>
+<div id="subgrid-container"><div>
+<main id="main-content" class="main w-full">
+  <shreddit-title title="Which tools do you use?"></shreddit-title>
+  <faceplate-loader></faceplate-loader>
+  <shreddit-post id="t3_abc123" score="5" author="op_writer">
+    <h1 slot="title">Which tools do you use?</h1>
+    <div slot="text-body"><div class="md" id="t3_abc123-post-rtjson-content"><p>POST-BODY: a question for the community about tools.</p><p>POST-BODY-2: what do you all use and why?</p></div></div>
+    <div class="vote-bar"><span class="score">5</span></div>
+  </shreddit-post>
+  <script>window.__probe = { small: true };</script>
+  <script>window.__state = { payload: "INLINE-SCRIPT-PAYLOAD should never be read" };</script>
+  <faceplate-loader></faceplate-loader>
+  <faceplate-partial></faceplate-partial>
+  <shreddit-comment-tree-ads></shreddit-comment-tree-ads>
+  <shreddit-comment-tree-stats></shreddit-comment-tree-stats>
+  <comment-body-header>HDR-STUB</comment-body-header>
+  <div id="comment-tree-content-anchor-abc123">
+    <shreddit-comment-tree id="comment-tree">
+      <section aria-label="Comments" class="flex flex-col px-md xs:px-0 gap-md relative">
+        <shreddit-comment author="first_user" thingid="t1_aaa" depth="0" score="3" arialabel="Comment from first_user 4 days ago">
+          <details role="article" open aria-label="Comment from first_user 4 days ago">
+            <summary><a href="/user/first_user/">first_user</a> <time datetime="2026-10-22T10:00:00Z">4d ago</time></summary>
+            <div class="comment-main-grid"><div class="min-w-0">
+              <div slot="comment" id="t1_aaa-comment-rtjson-content" class="md"><div id="t1_aaa-post-rtjson-content"><p>COMMENT-ONE: the first top-level comment.</p></div></div>
+            </div></div>
+          </details>
+          <shreddit-comment author="second_user" thingid="t1_bbb" depth="1" score="1" arialabel="Comment from second_user 3 days ago">
+            <details role="article" open aria-label="Comment from second_user 3 days ago">
+              <summary><a href="/user/second_user/">second_user</a> <time datetime="2026-10-23T10:00:00Z">3d ago</time></summary>
+              <div class="comment-main-grid"><div class="min-w-0">
+                <div slot="comment" id="t1_bbb-comment-rtjson-content" class="md"><div id="t1_bbb-post-rtjson-content"><p>COMMENT-TWO: a nested reply.</p></div></div>
+              </div></div>
+            </details>
+          </shreddit-comment>
+        </shreddit-comment>
+        <shreddit-comment author="third_user" thingid="t1_ccc" depth="0" score="2" arialabel="Comment from third_user 2 days ago">
+          <details role="article" open aria-label="Comment from third_user 2 days ago">
+            <summary><a href="/user/third_user/">third_user</a> <time datetime="2026-10-24T10:00:00Z">2d ago</time></summary>
+            <div class="comment-main-grid"><div class="min-w-0">
+              <div slot="comment" id="t1_ccc-comment-rtjson-content" class="md"><div id="t1_ccc-post-rtjson-content"><p>COMMENT-THREE: the last top-level comment.</p><p>COMMENT-THREE-P2: with a second paragraph.</p></div></div>
+            </div></div>
+          </details>
+        </shreddit-comment>
+      </section>
+    </shreddit-comment-tree>
+  </div>
+</main>
+<aside class="sidebar">SIDEBAR-BOILERPLATE community rules</aside>
+</div></div>
+<footer>FOOTER-BOILERPLATE Reddit, Inc.</footer>
+</shreddit-app>
+</body>
+</html>
