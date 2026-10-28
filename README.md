@@ -31,7 +31,8 @@ contract (tools, snapshot grammar, effect lines, acceptance criteria) is `PLAN.m
 1. Have Node >= 20 and an installed Google Chrome. Nothing to clone or build: `npx` fetches the `motorika`
    package from npm on first start.
 2. Register: `claude mcp add motorika -s user -- npx -y motorika` (headed; add `--headless` at the end for
-   headless Chrome).
+   headless Chrome). Or as a Claude Code plugin: `/plugin marketplace add X2Mobile/x2-plugins`, then
+   `/plugin install motorika@x2mobile`.
 3. Log in once, if the agent needs your accounts: `npx motorika open https://accounts.google.com`, sign in,
    then quit Chrome fully (Cmd+Q on macOS).
 4. Try it: ask Claude Code to open a page, search for something and summarise what it finds.

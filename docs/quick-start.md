@@ -29,6 +29,17 @@ For headless Chrome, add `--headless`:
 claude mcp add motorika -s user -- npx -y motorika --headless
 ```
 
+Or install it as a Claude Code plugin from the [x2mobile marketplace](https://github.com/X2Mobile/x2-plugins),
+which runs the same package (headed), pinned to a version:
+
+```
+/plugin marketplace add X2Mobile/x2-plugins
+/plugin install motorika@x2mobile
+```
+
+The plugin names the server after itself, so its tools appear under a different name than with
+`claude mcp add`; `/mcp` shows them.
+
 Chrome starts lazily, on the first tool call that needs a page; `initialize` and `tools/list` never start it.
 Every other flag (profile, output dir, origin lists, timeouts) is in [Configuration](configuration.md#flags),
 and `npx motorika --help` lists them too.
