@@ -107,8 +107,9 @@ export async function askFrame<T>(frame: Frame, p: Promise<T>, ms: number): Prom
 }
 
 /**
- * Round 7b: how find, wait and video name the frames that did not answer, so the three read alike (and the
- * README): `1 frame unavailable (no answer within 500 ms): f2`, or with a total, `1 of 3 frames …`.
+ * Round 7b: how find, wait and video name the frames that did not answer, so the three read alike (and
+ * docs/tools.md "Frames"): `1 frame unavailable (no answer within 500 ms): f2`, or with a total,
+ * `1 of 3 frames …`.
  */
 export function unavailableFrames(labels: string[], total?: number): string {
   const n = labels.length;

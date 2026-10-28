@@ -71,8 +71,9 @@ const NO_PRELOADING = 2;
 /**
  * G1: turn off speculation-rules prefetch and prerender on the profile before Chrome starts, by Chrome's
  * own "Preload pages: off" preference (no switch or feature flag does this; measured). Only called with an
- * origin list. The preference stays in a persistent profile afterwards (README). A Preferences file this
- * cannot read is left alone, with a warning: the DNS layer still covers listed host names.
+ * origin list. The preference stays in a persistent profile afterwards (docs/safety.md "Origin lists"). A
+ * Preferences file this cannot read is left alone, with a warning: the DNS layer still covers listed host
+ * names.
  */
 export function disablePreloading(profileDir: string): boolean {
   const dir = join(profileDir, 'Default');
@@ -327,7 +328,7 @@ export class Session {
    * paused, and the HTTP cache stays on.
    * - `--blocked-origins` alone: patterns for the listed hosts only (a superset; checkOrigin decides).
    * - `--allowed-origins`: any http(s) request can be refused, so every one of them pauses here (the cost
-   *   of an allow-list; README).
+   *   of an allow-list; docs/safety.md "Origin lists").
    * - WebSockets: Fetch does not see the handshake, so `ctx.routeWebSocket` (an in-page shim, no request
    *   interception) checks them.
    * Without a Browser object (not seen with Chrome; kept as a fallback) the old mechanism applies:

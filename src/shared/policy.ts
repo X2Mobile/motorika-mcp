@@ -23,7 +23,8 @@ const onOff = (b: boolean): string => (b ? 'on' : 'off');
 
 /**
  * What a joined session would inherit from the owner. The cwd and --output-dir are per session (every
- * Claude session has its own) and are not compared; README "One agent browser" says what that means.
+ * Claude session has its own) and are not compared; docs/configuration.md "One agent browser" says what
+ * that means.
  */
 export function securityPolicy(c: Config): SecurityPolicy {
   return {

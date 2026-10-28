@@ -258,8 +258,8 @@ describe('C1 (round 2): a secret-named parameter after a redacted secret never p
       let rows = 0;
       for (const secret of C1_SECRETS) {
         for (const [sp, spell] of Object.entries(SPELL)) {
-          // A JSON-escaped spelling inside a JSON-quoted path is escaped twice: the README's documented gap, where the
-          // net also stops at the backslash (fba6f4f the same).
+          // A JSON-escaped spelling inside a JSON-quoted path is escaped twice: the documented gap in
+          // docs/security.md, where the net also stops at the backslash (fba6f4f the same).
           if (sp === 'JSON-escaped' && (path === 'evaluate result' || path === 'error message')) continue;
           for (const [label, shape] of C1_SHAPES) {
             const t = shape(spell(secret));
@@ -358,7 +358,7 @@ describe('AC2: the whole-token rule is otherwise unchanged', () => {
       assert.equal(await through(line), line);
     }
   });
-  test('two secrets glued to each other with no edge between them stay as they are (README)', () => {
+  test('two secrets glued to each other with no edge between them stay as they are (docs/security.md)', () => {
     S.rememberSecret('Hunter2xZ');
     S.rememberSecret('Zebra99!');
     for (const line of ['Hunter2xZebra99!', '%27Hunter2xZebra99!%27', '- text "Hunter2xZebra99!"']) assert.equal(S.scrubSecrets(line), line);
@@ -374,7 +374,7 @@ describe('AC2: the whole-token rule is otherwise unchanged', () => {
     }
     assert.equal(S.scrubSecrets('q=+button&n=1'), `q=${R}&n=1`);
   });
-  test('a + and a space count as the same character in a secret (README)', () => {
+  test('a + and a space count as the same character in a secret (docs/security.md)', () => {
     S.rememberSecret('pa+ss12x');
     assert.equal(S.scrubSecrets('is pa ss12x.'), `is ${R}.`);
     assert.equal(S.scrubSecrets('q=pa%2Bss12x&n=1'), `q=${R}&n=1`);
@@ -470,7 +470,7 @@ describe('AC3: a redaction never splits an escape or a quoted string', () => {
     assert.equal(S.scrubSecrets('line\\nHunter2!x'), `line\\n${R}`);
     assert.equal(S.scrubSecrets('"\\"Hunter2!x\\""'), `"\\"${R}\\""`);
   });
-  test('a match inside a JSON escape is left alone (README: `\\nopass12` for the secret `nopass12`)', () => {
+  test('a match inside a JSON escape is left alone (docs/security.md: `\\nopass12` for the secret `nopass12`)', () => {
     S.rememberSecret('nopass12');
     assert.equal(S.scrubSecrets('x\\nopass12 y'), 'x\\nopass12 y');
   });
@@ -482,7 +482,7 @@ describe('AC3: a redaction never splits an escape or a quoted string', () => {
   });
 });
 
-describe('README "Not covered": the documented gaps stay as documented (a change here changes the README too)', () => {
+describe('docs/security.md "Not covered": the documented gaps stay as documented (a change here changes docs/security.md too)', () => {
   test('base64, a changed case, double encoding, a twice-escaped quote or backslash, a non-UTF-8 charset are not matched', () => {
     S.rememberSecret('Hunter2xZ!');
     S.rememberSecret('Pässwörd1');
