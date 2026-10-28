@@ -28,6 +28,6 @@ Error messages and what to do about them. Back to the [README](../README.md).
 | `dialog pending …` on every call | Handle it with `dialog accept` or `dialog dismiss` on that tab. |
 | `upload refused …` | The path is outside the roots or hidden. Copy the file into an allowed root, or start with `--allow-file-root` / `--allow-hidden-files`. |
 | A tool result starts with `notice:` | The browser was closed or disconnected and has been relaunched or reconnected. Old tabs and refs are gone. |
-| Garbled protocol in the client | Something wrote to stdout. The server logs only to stderr; check wrappers around `node dist/index.js`. |
+| Garbled protocol in the client | Something wrote to stdout. The server logs only to stderr; check wrappers around the server command (`npx motorika`, or `node dist/index.js` from a clone). |
 
 The full log is on stderr. Set `MOTORIKA_LOG=debug` for more.

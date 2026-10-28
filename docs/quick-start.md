@@ -1,6 +1,6 @@
 # Quick start
 
-From a clone to a first prompt in Claude Code. Back to the [README](../README.md).
+From install to a first prompt in Claude Code. Back to the [README](../README.md).
 
 ## Requirements
 
@@ -8,36 +8,30 @@ Needs Node >= 20 and an installed Google Chrome. `playwright-core` downloads no 
 
 You also need Claude Code, or another MCP client that runs stdio servers.
 
-## Install and build
+## Install
 
-```sh
-git clone https://github.com/X2Mobile/motorika-mcp.git
-cd motorika-mcp
-npm ci
-npm run build
-```
-
-The build writes `dist/index.js`, the server. To check that the pinned `playwright-core` can drive your
-installed Chrome, run `npm run smoke:chrome`. More build and test details: [Development](development.md).
+Nothing to clone or build. Motorika is the `motorika` package on npm; `npx -y motorika` fetches it on
+first start and runs it from npm's cache after that. To run it from a clone instead (for development),
+see [Development](development.md).
 
 ## Register with Claude Code
 
-The server runs headed by default: Chrome opens a visible window, so you can watch the agent. Use the
-absolute path of your clone:
+The server runs headed by default: Chrome opens a visible window, so you can watch the agent. `-s user`
+makes it available in every project:
 
 ```sh
-claude mcp add motorika -- node /abs/path/to/motorika-mcp/dist/index.js
+claude mcp add motorika -s user -- npx -y motorika
 ```
 
 For headless Chrome, add `--headless`:
 
 ```sh
-claude mcp add motorika -- node /abs/path/to/motorika-mcp/dist/index.js --headless
+claude mcp add motorika -s user -- npx -y motorika --headless
 ```
 
 Chrome starts lazily, on the first tool call that needs a page; `initialize` and `tools/list` never start it.
 Every other flag (profile, output dir, origin lists, timeouts) is in [Configuration](configuration.md#flags),
-and `node dist/index.js --help` lists them too.
+and `npx motorika --help` lists them too.
 
 ## Log in once
 
@@ -46,7 +40,7 @@ restarts. Google refuses sign-in in automation-controlled windows, so log in by 
 Chrome on the agent profile:
 
 ```sh
-node dist/index.js open https://accounts.google.com
+npx motorika open https://accounts.google.com
 ```
 
 - Sign in, then quit Chrome fully: Cmd+Q on macOS, where closing the window leaves it running. Quitting

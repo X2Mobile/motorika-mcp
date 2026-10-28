@@ -21,8 +21,8 @@ Use separate, low-privilege accounts for what the agent needs, and keep the rest
 For extra certainty, block those sites outright:
 
 ```sh
-node dist/index.js --blocked-origins bank.example,mail.google.com,*.console.aws.amazon.com
-node dist/index.js --allowed-origins docs.example,https://staging.example   # only these load
+npx -y motorika --blocked-origins bank.example,mail.google.com,*.console.aws.amazon.com
+npx -y motorika --allowed-origins docs.example,https://staging.example   # only these load
 ```
 
 **Origin lists.**

@@ -30,6 +30,10 @@
     "docs/*.md",
     "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "engines": {
     "node": ">=20"
   },
@@ -39,7 +43,8 @@
     "test": "npm run build && node --import tsx --test --test-concurrency=2 'test/**/*.test.ts'",
     "test:unit": "node --import tsx --test 'test/unit/**/*.test.ts'",
     "smoke:chrome": "node scripts/smoke-chrome.mjs",
-    "bench": "node --import tsx bench/micro.mjs"
+    "bench": "node --import tsx bench/micro.mjs",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.32.1",

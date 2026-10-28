@@ -78,8 +78,8 @@ on the same `--profile-dir`, and all of them use one Chrome with your logins.
 plain Chrome on the agent profile:
 
 ```sh
-node dist/index.js open https://accounts.google.com            # default profile ~/.motorika/profile
-node dist/index.js open --profile-dir ~/agent-profile [url]
+npx motorika open https://accounts.google.com                  # default profile ~/.motorika/profile
+npx motorika open --profile-dir ~/agent-profile [url]
 ```
 
 - `open` starts Chrome with `--user-data-dir`, `--no-first-run` and `--no-default-browser-check`, plus
