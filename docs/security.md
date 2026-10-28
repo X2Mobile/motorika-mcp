@@ -40,13 +40,15 @@ What the server refuses, redacts and marks by default, and exactly what is not c
     non-UTF-8 charset (a GET form on a windows-1252 page prints `P%E4ssw%F6rd1`), and, for a secret that
     itself holds more than four `%XX`-like or backslash sequences or is longer than 128 characters, a mix of
     those sequences written raw and escaped (all raw or all escaped is covered).
-    - A secret ending in `\`, in raw text, when `"`, `/` or a letter follows it, as in a JSON escape
-      (`\"`, `\/`, `\n`, `\u…`; also `\A`): the whole secret prints (`pw trailing\"` for the secret
-      `trailing\`). Before a space or at the end of the text it is redacted.
-    - A secret holding `"`, in raw text with another `"` later on the line: that quote is kept as one that
+    - A secret ending in `\`, in raw text, when `"`, `/`, a letter or a digit follows it: the whole secret
+      prints (`pw trailing\"` for the secret `trailing\`). Before `"` and `/` this is the escape guard
+      (`\"`, `\/` read as JSON escapes); before a letter or digit it is the whole-token rule above. Before a
+      space, a newline, other punctuation or at the end of the text it is redacted.
+    - A secret holding `"`, in raw text, when that quote pairs with another `"` on the same line, before
+      or after it (quotes pair left to right, as in JSON strings): the quote is kept as one that opens or
       closes a JSON string (see "A redaction never splits an escape or a quoted string"), so it and its
       position stay visible (`a Hu"nt!2x c"` prints `a <redacted>"<redacted> c"` for the secret
-      `Hu"nt!2x`). With no later `"` on the line, the whole secret is redacted.
+      `Hu"nt!2x`). When it pairs with no other quote, the whole secret is redacted.
 - **Printed URLs** (headers, `→ url`, `→ navigated`, `→ new tab`, `→ blocked`, tabs, network, console
   locations, errors that name a URL, `href=`) are matched the same way on the raw URL, before the server
   percent-encodes it (without JSON escapes: a URL is raw text). A `<redacted>` in a printed URL is always the

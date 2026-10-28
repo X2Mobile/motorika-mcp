@@ -499,20 +499,23 @@ describe('docs/security.md "Not covered": the documented gaps stay as documented
       assert.equal(S.scrubSecrets(line), line);
     }
   });
-  test('a secret ending in `\\` prints whole in raw text when `"`, `/` or a letter follows it', () => {
+  test('a secret ending in `\\` prints whole in raw text when `"`, `/`, a letter or a digit follows it', () => {
     S.rememberSecret('trailing\\');
-    for (const line of ['pw trailing\\"', 'pw trailing\\/', 'pw trailing\\n', 'pw trailing\\u0041', 'pw trailing\\A']) {
+    for (const line of ['pw trailing\\"', 'pw trailing\\/', 'pw trailing\\n', 'pw trailing\\u0041', 'pw trailing\\A', 'pw trailing\\7']) {
       assert.equal(S.scrubSecrets(line), line);
     }
-    // The same secret before a space or at the end is redacted: the gap is only the escape-like follower.
+    // The same secret before a space, other punctuation or at the end is redacted.
+    assert.equal(S.scrubSecrets('pw trailing\\, x'), `pw ${R}, x`);
     assert.equal(S.scrubSecrets('pw trailing\\ x'), `pw ${R} x`);
     assert.equal(S.scrubSecrets('pw trailing\\'), `pw ${R}`);
   });
-  test('a secret holding `"` keeps that quote visible in raw text when another `"` follows on the line', () => {
+  test('a secret holding `"` keeps that quote visible in raw text when it pairs with another `"` on the line, before or after', () => {
     S.rememberSecret('Hu"nt!2x');
     assert.equal(S.scrubSecrets('a "b" Hu"nt!2x c"'), `a "b" ${R}"${R} c"`);
     assert.equal(S.scrubSecrets('a Hu"nt!2x c"'), `a ${R}"${R} c"`);
-    // With no later `"` on the line the whole secret is redacted.
+    // An unpaired quote before the secret pairs with it too.
+    assert.equal(S.scrubSecrets('"a Hu"nt!2x c'), `"a ${R}"${R} c`);
+    // When every other quote on the line is already paired, the whole secret is redacted.
     assert.equal(S.scrubSecrets('a "b" Hu"nt!2x c'), `a "b" ${R} c`);
   });
 });
