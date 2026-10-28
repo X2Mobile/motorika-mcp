@@ -358,7 +358,7 @@ describe('AC2: the whole-token rule is otherwise unchanged', () => {
       assert.equal(await through(line), line);
     }
   });
-  test('two secrets glued to each other with no edge between them stay as they are (docs/security.md)', () => {
+  test('two secrets glued to each other with no edge between them stay as they are (docs/security.md "Whole tokens only")', () => {
     S.rememberSecret('Hunter2xZ');
     S.rememberSecret('Zebra99!');
     for (const line of ['Hunter2xZebra99!', '%27Hunter2xZebra99!%27', '- text "Hunter2xZebra99!"']) assert.equal(S.scrubSecrets(line), line);
@@ -374,7 +374,7 @@ describe('AC2: the whole-token rule is otherwise unchanged', () => {
     }
     assert.equal(S.scrubSecrets('q=+button&n=1'), `q=${R}&n=1`);
   });
-  test('a + and a space count as the same character in a secret (docs/security.md)', () => {
+  test('a + and a space count as the same character in a secret (docs/security.md "Spellings covered")', () => {
     S.rememberSecret('pa+ss12x');
     assert.equal(S.scrubSecrets('is pa ss12x.'), `is ${R}.`);
     assert.equal(S.scrubSecrets('q=pa%2Bss12x&n=1'), `q=${R}&n=1`);
@@ -470,7 +470,7 @@ describe('AC3: a redaction never splits an escape or a quoted string', () => {
     assert.equal(S.scrubSecrets('line\\nHunter2!x'), `line\\n${R}`);
     assert.equal(S.scrubSecrets('"\\"Hunter2!x\\""'), `"\\"${R}\\""`);
   });
-  test('a match inside a JSON escape is left alone (docs/security.md: `\\nopass12` for the secret `nopass12`)', () => {
+  test('a match inside a JSON escape is left alone (docs/security.md "A redaction never splits an escape": `\\nopass12` for the secret `nopass12`)', () => {
     S.rememberSecret('nopass12');
     assert.equal(S.scrubSecrets('x\\nopass12 y'), 'x\\nopass12 y');
   });
