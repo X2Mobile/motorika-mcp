@@ -94,6 +94,8 @@ grammar.
   3. 100 ms without DOM mutations, at most 600 ms. Mutations of nodes that were already changing on
      their own before the action (a clock, a progress bar) do not count, so a self-updating page does
      not hold every action to the 600 ms cap. A change the action makes to such a node is not waited for.
+     On a very busy machine, when two of such a node's own changes land in one observer batch, an action
+     can still wait out the 600 ms cap.
 
   The whole settle also stops 0.7 s after the call's own timeout, so a call never runs past its timeout
   plus 2 s. It always ends 0.6 s before the call deadline, and the reads after it (title, live regions,

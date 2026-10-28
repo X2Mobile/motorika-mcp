@@ -499,6 +499,22 @@ describe('docs/security.md "Not covered": the documented gaps stay as documented
       assert.equal(S.scrubSecrets(line), line);
     }
   });
+  test('a secret ending in `\\` prints whole in raw text when `"`, `/` or a letter follows it', () => {
+    S.rememberSecret('trailing\\');
+    for (const line of ['pw trailing\\"', 'pw trailing\\/', 'pw trailing\\n', 'pw trailing\\u0041', 'pw trailing\\A']) {
+      assert.equal(S.scrubSecrets(line), line);
+    }
+    // The same secret before a space or at the end is redacted: the gap is only the escape-like follower.
+    assert.equal(S.scrubSecrets('pw trailing\\ x'), `pw ${R} x`);
+    assert.equal(S.scrubSecrets('pw trailing\\'), `pw ${R}`);
+  });
+  test('a secret holding `"` keeps that quote visible in raw text when another `"` follows on the line', () => {
+    S.rememberSecret('Hu"nt!2x');
+    assert.equal(S.scrubSecrets('a "b" Hu"nt!2x c"'), `a "b" ${R}"${R} c"`);
+    assert.equal(S.scrubSecrets('a Hu"nt!2x c"'), `a ${R}"${R} c"`);
+    // With no later `"` on the line the whole secret is redacted.
+    assert.equal(S.scrubSecrets('a "b" Hu"nt!2x c'), `a "b" ${R} c`);
+  });
 });
 
 // ---------------------------------------------------------------------------------------------------------

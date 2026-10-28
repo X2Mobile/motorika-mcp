@@ -49,9 +49,10 @@ Chrome on the agent profile:
 node dist/index.js open https://accounts.google.com
 ```
 
-- Sign in, then leave the window open half a minute, or quit Chrome normally (Cmd+Q). Chrome writes
-  cookies to disk about every 30 s.
-- `open` exits when that Chrome exits.
+- Sign in, then quit Chrome fully: Cmd+Q on macOS, where closing the window leaves it running. Quitting
+  normally also writes the cookies to disk (otherwise Chrome writes them about every 30 s).
+- `open` exits when that Chrome exits. Until then, that Chrome holds the profile, and the agent's first
+  page tool fails with `profile … is in use by another Chrome (pid N) that is not a Motorika server`.
 - Run it while no server uses the profile. If a server owns it, `open` exits with code 2 and tells you to
   log in through that server's window instead.
 - Log in only to accounts you are willing to let the agent use: not your bank, your main email or admin

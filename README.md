@@ -19,10 +19,10 @@ contract (tools, snapshot grammar, effect lines, acceptance criteria) is `PLAN.m
 - **Actions report what changed:** each action prints `→` lines for a navigation, a new or closed tab, a
   dialog, a download, a live-region alert and new console errors, and a viewport snapshot after a
   navigation to a new document.
-- **Video:** frames of any `<video>` as images, cross-origin iframes included, and the cues of its text
-  tracks; play, pause, seek and rate.
-- **One agent browser for many sessions:** several Claude sessions on the same profile share one Chrome
-  with your logins, each with its own tabs.
+- **Video:** frames of a `<video>` as images, cross-origin iframes included (a DRM-protected or not yet
+  decoded frame comes back black), and the cues of its text tracks; play, pause, seek and rate.
+- **One agent browser for many sessions:** in launch mode, several Claude sessions on the same profile
+  share one Chrome with your logins, each with its own tabs. `--isolated` servers never share.
 - **Headed or headless,** on a persistent profile, a fresh `--isolated` one, or attached to your running
   Chrome (`--cdp-endpoint`, `--auto-connect`).
 

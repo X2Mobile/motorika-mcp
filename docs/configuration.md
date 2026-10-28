@@ -89,7 +89,9 @@ node dist/index.js open --profile-dir ~/agent-profile [url]
   `--enable-automation` and no `--remote-debugging-*`.
 - Chrome writes cookies to disk about every 30 s. Leave the window open half a minute after signing in,
   or quit Chrome normally (Cmd+Q).
-- It exits when that Chrome exits; close the window when you are signed in.
+- It exits when that Chrome exits. When you are signed in, quit Chrome fully (Cmd+Q on macOS; closing the
+  window leaves it running). Until it exits, that Chrome holds the profile and page tools return an error
+  naming its pid.
 - If a server currently owns the profile, `open` exits with code 2 and tells you to log in through that
   server's window instead (`session launch headless=false` makes it visible). It also exits 2 when another
   Chrome already uses the profile.
