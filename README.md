@@ -1,8 +1,5 @@
 # Motorika
 
-The name comes from the Hungarian *finommotorika*, "fine motor skills": the clicks, keystrokes and form
-fills an agent needs. The project was called x2-browser-mcp until 2026-10-28.
-
 An MCP server (stdio) that gives an AI agent fast, reliable control of Chrome:
 - tabs, forms, clicks, keyboard, scrolling and drag;
 - uploads, downloads and JS dialogs;
