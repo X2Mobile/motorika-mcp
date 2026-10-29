@@ -1,0 +1,70 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Required for merging: fast, needs no browser.
+  checks:
+    name: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Unit tests
+        run: node --import tsx --test 'test/unit/**/*.test.ts'
+      - name: Bench tests
+        run: npm test
+        working-directory: bench
+
+  # Required for merging: the published package must run on the oldest Node that package.json promises.
+  node20:
+    name: node20
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: MCP smoke (initialize + tools/list, no browser)
+        run: node scripts/mcp-smoke.mjs
+
+  # Advisory for now: the full suite drives a real headless Chrome and has not yet been proven on Linux.
+  e2e:
+    name: e2e (advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Ubuntu 24.04 restricts unprivileged user namespaces, which Chrome's sandbox needs; Motorika keeps the sandbox on.
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      - run: google-chrome --version
+      - name: Full suite
+        run: npm test
