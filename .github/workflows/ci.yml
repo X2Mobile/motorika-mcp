@@ -5,6 +5,7 @@ on:
     branches: [main]
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -20,8 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
@@ -40,8 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 20
           cache: npm
@@ -50,15 +51,18 @@ jobs:
       - name: MCP smoke (initialize + tools/list, no browser)
         run: node scripts/mcp-smoke.mjs
 
-  # Advisory for now: the full suite drives a real headless Chrome and has not yet been proven on Linux.
+  # Manual for now (Actions > CI > Run workflow): the full suite drives a real Chrome and is not Linux-ready yet. Its
+  # first Linux run (2026-10-29) passed 759 tests, failed about 9 (headed tests without a display, macOS-only
+  # keychain and cookie tests, connect mode, crashed tabs) and hit the 30-minute limit.
   e2e:
     name: e2e (advisory)
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm

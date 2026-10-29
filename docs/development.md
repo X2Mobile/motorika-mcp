@@ -29,5 +29,5 @@ server loads at runtime.
   - `test/acceptance/` holds the independent acceptance suite.
 - CI (`.github/workflows/ci.yml`) runs on every pull request to `main`. Required to merge: `checks` (typecheck,
   build, unit and bench tests on Node 24) and `node20` (`scripts/mcp-smoke.mjs`: the built server answers
-  `initialize` and lists its tools on Node 20). Advisory for now: `e2e`, the full suite with a headless Chrome on
-  Linux.
+  `initialize` and lists its tools on Node 20). Manual for now (Actions > CI > Run workflow): `e2e`, the full suite with a real Chrome on
+  Linux; it is not Linux-ready yet.
