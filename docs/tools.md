@@ -4,8 +4,8 @@ How the tools behave: targets, output, paging, settle, frames, dialogs and video
 
 ## Using the tools
 
-These notes cover the contract details that most often matter. `PLAN.md` has the full tool list and
-grammar.
+These notes cover the contract details that most often matter. The server's `tools/list` gives every
+tool's full input schema.
 - **Targets** take three forms:
   - a ref (`e12`) from snapshot, find, a strict-mode listing or an evaluate result. A ref locates its
     own tab and frame.

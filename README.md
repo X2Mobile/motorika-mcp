@@ -5,8 +5,7 @@ An MCP server (stdio) that gives an AI agent fast, reliable control of Chrome:
 - uploads, downloads and JS dialogs;
 - JS evaluation, console and network inspection.
 
-It runs headed or headless, on a dedicated persistent profile or attached to a running Chrome. The
-contract (tools, snapshot grammar, effect lines, acceptance criteria) is `PLAN.md`.
+It runs headed or headless, on a dedicated persistent profile or attached to a running Chrome.
 
 ## What it does
 
@@ -50,7 +49,7 @@ The full guide, with logging in once and the permission setup: [docs/quick-start
 | [Security defaults](docs/security.md) | upload roots, written files, password and secret redaction, what is not covered |
 | [Troubleshooting](docs/troubleshooting.md) | error messages and what to do about them |
 | [Development](docs/development.md) | build outputs, tests, code layout |
-| [PLAN.md](PLAN.md), [docs/reviews/](docs/reviews/), [VERIFICATION.md](VERIFICATION.md) | design record: the contract, the reviews and what was verified |
+| [Reviews](docs/reviews/) | design record: the independent reviews and their re-checks |
 
 ## Safety
 
