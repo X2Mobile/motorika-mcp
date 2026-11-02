@@ -9,5 +9,3 @@ coverage/
 # Raw agent streams: they hold third-party page text and the local Claude setup. The summaries in
 # bench/results/*.json and *.csv are committed.
 bench/results/agent/
-# The H1 run 2 stream: same reason. It stays in the private history only.
-docs/verification/h1-run2.jsonl

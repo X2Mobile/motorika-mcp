@@ -49,7 +49,6 @@ The full guide, with logging in once and the permission setup: [docs/quick-start
 | [Security defaults](docs/security.md) | upload roots, written files, password and secret redaction, what is not covered |
 | [Troubleshooting](docs/troubleshooting.md) | error messages and what to do about them |
 | [Development](docs/development.md) | build outputs, tests, code layout |
-| [Reviews](docs/reviews/) | design record: the independent reviews and their re-checks |
 
 ## Safety
 

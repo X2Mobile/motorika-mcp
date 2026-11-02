@@ -2,7 +2,8 @@
 
 Criterion id → test(s) → oracle. Criteria come from the design contract's "Acceptance criteria" plus the
 amendment of 2026-10-21 (new A4, new A11; `main` commit 754e079). That contract, `PLAN.md`, was removed from
-the repository on 2026-11-02 and stays in its git history; code comments that cite "PLAN" refer to it. Every expectation comes from the contract or a fixture's
+the repository on 2026-11-02 together with the review reports under `docs/reviews/`; both stay in its git history,
+and code comments that cite "PLAN" or `docs/reviews/` refer to them. Every expectation comes from the contract or a fixture's
 own spec, never from server output.
 
 Oracle kinds:
